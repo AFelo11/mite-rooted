@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "createmite",
+  "version": "0.1.0",
+  "name": "MITE-扎根",
+  "description": "Create 动力与加工体系在 MITE R196 上的原生重制（Phase 1：/P 指令、锌矿、锌与黄铜）",
+  "authors": ["DSH"],
+  "license": "MIT",
+  "environment": "*",
+  "depends": {
+    "fishmodloader": ">=3.4.2"
+  },
+  "entrypoints": {
+    "main": ["net.dsh.createmite.CreateMite"],
+    "client": ["net.dsh.createmite.CreateMite"]
+  },
+  "mixins": ["createmite.mixin.json"],
+  "accessWidener": "createmite.accesswidener"
+}

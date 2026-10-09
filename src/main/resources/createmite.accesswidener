@@ -1,0 +1,3 @@
+accessWidener v2 named
+
+# 需要的成员一律在 Mixin 中用 @Shadow 访问，此处暂时留空
