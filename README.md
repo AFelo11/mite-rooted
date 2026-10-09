@@ -57,14 +57,14 @@ powershell -ExecutionPolicy Bypass -File build.ps1 -McDir "X:\...\.minecraft" -J
 - 热源：**营火**（+12，半径 12）、**暖手石**（+8，可反复烤热）。
 - 降温链：**热水碗** —5 分钟→ **温水碗** —3 分钟→ **水碗**；**冰水碗** = 水碗 + 雪球。
 
-### 五、食物与饮品（套餐 A）
+### 五、食物与饮品
 - 碗类饮料：热水碗 / 温水碗 / 冰水碗 / 热牛奶碗；热奶桶（7 种金属材质各一份）。
 - 喝完**返还容器**：碗还碗，奶桶还对应材质的空桶。
 - 苹果派线：苹果派胚 —熔炉→ 热苹果派 —放 5 分钟→ 苹果派（**可回炉再热**）。
 - 巧克力奶线：巧克力奶 —熔炉→ 热巧克力奶。
 - 每种食物/饮品都带自己的体感加成。
 
-### 六、动力网络（应力）
+### 六、动力网络
 - 动力源「提供」应力、设备「占用」应力；同一张网里**占用 > 提供**就过载（默认停机并提示，模式可配置）。
 - 传动件：传动轴、齿轮 / 大齿轮、手摇曲柄、水车 / 大型水车、机壳系列（安山岩、黄铜、铜等）。
 
@@ -178,14 +178,14 @@ Five weather states distributed across the seasons; rain and snow affect ambient
 - Heat: **campfire** (+12, radius 12), **hand warmer** (+8, reheatable).
 - Cooling chain: **hot water bowl** —5 min→ **warm water bowl** —3 min→ **water bowl**; **ice water bowl** = water bowl + snowball.
 
-### 5. Food and drinks (set A)
+### 5. Food and drinks
 - Bowl drinks: hot / warm / ice water bowls, hot milk bowl; hot milk buckets (one per metal, 7 kinds).
 - **Containers are returned** when drunk: bowls come back as bowls, buckets as their own metal's empty bucket.
 - Apple pie line: raw apple pie —furnace→ hot apple pie —5 min→ apple pie (can be **re-baked**).
 - Chocolate milk line: chocolate milk —furnace→ hot chocolate milk.
 - Every food/drink carries its own temperature effect.
 
-### 6. Kinetics network (stress)
+### 6. Kinetics network
 - Generators **provide** stress, machines **consume** it; if consumption exceeds supply on the same network it overloads (default: stop and warn; the mode is configurable).
 - Components: shafts, cogwheels / large cogwheels, hand crank, water wheel / large water wheel, casing series (andesite, brass, copper, ...).
 
