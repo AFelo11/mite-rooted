@@ -1,6 +1,6 @@
 # MITE-扎根 · MITE-Rooted
 
-把《Create 机械动力》的动力与加工体系，**原生重制**到 **Minecraft 1.6.4 / MITE R196 / FishModLoader 3.4.2** 上。
+把Create的部分动力与加工体系，**原生重制**到 **Minecraft 1.6.4 / MITE R196 / FishModLoader 3.4.2** 上。
 
 A native re-implementation of Create's kinetics and processing systems for **Minecraft 1.6.4 (MITE R196 + FishModLoader 3.4.2)**.
 
