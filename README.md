@@ -166,14 +166,14 @@ Five weather states distributed across the seasons; rain and snow affect ambient
 - Heat: **campfire** (+12, radius 12), **hand warmer** (+8, reheatable).
 - Cooling chain: **hot water bowl** —5 min→ **warm water bowl** —3 min→ **water bowl**; **ice water bowl** = water bowl + snowball.
 
-### 5. Food and drinks (set A)
+### 5. Food and drinks 
 - Bowl drinks: hot / warm / ice water bowls, hot milk bowl; hot milk buckets (one per metal, 7 kinds).
 - **Containers are returned** when drunk: bowls come back as bowls, buckets as their own metal's empty bucket.
 - Apple pie line: raw apple pie —furnace→ hot apple pie —5 min→ apple pie (can be **re-baked**).
 - Chocolate milk line: chocolate milk —furnace→ hot chocolate milk.
 - Every food/drink carries its own temperature effect.
 
-### 6. Kinetics network (stress)
+### 6. Kinetics network 
 - Generators **provide** stress, machines **consume** it; if consumption exceeds supply on the same network it overloads (default: stop and warn; the mode is configurable).
 - Components: shafts, cogwheels / large cogwheels, hand crank, water wheel / large water wheel, casing series (andesite, brass, copper, ...).
 
