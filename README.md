@@ -326,8 +326,6 @@ Both are rebindable in Options → Controls.
 
 **<https://afdian.com/a/H_MIU>**
 
-If you enjoy this project, you can support me on Afdian: **<https://afdian.com/a/H_MIU>**
-
 ---
 
 ## 许可与署名 / License & Credits
