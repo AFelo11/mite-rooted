@@ -125,7 +125,7 @@ public class BlockLargeCogwheel extends BlockKineticBase {
             // 理论到不了这里（见方法注释里的懒创建说明）。真到了就只留一行日志：
             // 那块齿轮会以"只有主体、没有占位格"的降级状态留在世界上，
             // 玩家把挡路的方块清掉后，KineticTileEntity 每 10 tick 的兜底 assemble 会把它补回来。
-            System.out.println("[CreateMITE] 大齿轮的 4 个正交挡位放不下，但拿不到方块实体，无法自动撤销："
+            System.out.println("[MITE] 大齿轮的 4 个正交挡位放不下，但拿不到方块实体，无法自动撤销："
                     + x + "," + y + "," + z);
         }
     }
@@ -137,7 +137,7 @@ public class BlockLargeCogwheel extends BlockKineticBase {
             player.sendChatToPlayer(ChatMessageComponent.createFromText(
                     "§c大齿轮轮盘的上下左右 4 格要留空：那里有方块挡着，已取消放置并把大齿轮退还给你（四个角不受影响）。"));
         }
-        System.out.println("[CreateMITE] 大齿轮的 4 个正交挡位放不下：" + x + "," + y + "," + z
+        System.out.println("[MITE] 大齿轮的 4 个正交挡位放不下：" + x + "," + y + "," + z
                 + " 轴向=" + (world.getBlockMetadata(x, y, z) & 3) + " → 已标记撤销（下一 tick 退还物品）");
     }
 

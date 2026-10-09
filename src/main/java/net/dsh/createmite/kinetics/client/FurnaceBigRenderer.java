@@ -77,7 +77,7 @@ public class FurnaceBigRenderer extends TileEntitySpecialRenderer {
 
         if (!loggedOnce) {
             loggedOnce = true;
-            System.out.println("[CreateMITE] 大熔炉整机渲染器开始工作 @ " + cx + "," + cy + "," + cz
+            System.out.println("[MITE] 大熔炉整机渲染器开始工作 @ " + cx + "," + cy + "," + cz
                     + " meta=" + meta + " 材质=" + material + " 机壳=" + casing + " 组合=" + variant);
         }
 
@@ -98,7 +98,7 @@ public class FurnaceBigRenderer extends TileEntitySpecialRenderer {
         int light = (rawLight != 0) ? rawLight : 0xF000F0;
         if (!loggedLight) {
             loggedLight = true;
-            System.out.println("[CreateMITE] 大熔炉光照取值: raw=0x" + Integer.toHexString(rawLight)
+            System.out.println("[MITE] 大熔炉光照取值: raw=0x" + Integer.toHexString(rawLight)
                     + " -> 用 0x" + Integer.toHexString(light));
         }
 

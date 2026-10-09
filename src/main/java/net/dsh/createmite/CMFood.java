@@ -112,7 +112,7 @@ public final class CMFood {
         reg(1167, "water_bowl",      "水碗",      -2.0F, 2.0F);
         reg(1206, "ice_cream",       "冰激凌",    -6.0F, 3.0F);
         reg(1224, "sorbet",          "雪葩",      -8.0F, 3.0F);
-        System.out.println("[CreateMITE][FOOD] 食物体感表已建：" + TABLE.size() + " 项");
+        System.out.println("[MITE][FOOD] 食物体感表已建：" + TABLE.size() + " 项");
     }
 
     /**
@@ -152,7 +152,7 @@ public final class CMFood {
                 String curKey = ACTIVE_KEY.get(k);
                 ACTIVE_NAME.put(k, (curName == null ? "?" : curName) + "+" + name);
                 ACTIVE_KEY.put(k, (curKey == null ? "?" : curKey) + "+" + key);
-                System.out.println("[CreateMITE][FOOD] merge(opposite) " + curVal + " + " + newVal
+                System.out.println("[MITE][FOOD] merge(opposite) " + curVal + " + " + newVal
                         + " = " + sum + " until=" + useUntil + " now=" + now);
             }
         } else {
@@ -161,7 +161,7 @@ public final class CMFood {
             ACTIVE_NAME.put(k, name);
             ACTIVE_KEY.put(k, key);
         }
-        System.out.println("[CreateMITE][FOOD] ate id=" + item.itemID + " temp=" + e[0]
+        System.out.println("[MITE][FOOD] ate id=" + item.itemID + " temp=" + e[0]
                 + " min=" + e[1] + " now=" + now);
     }
 

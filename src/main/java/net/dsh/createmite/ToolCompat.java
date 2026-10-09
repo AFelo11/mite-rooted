@@ -101,7 +101,7 @@ public final class ToolCompat {
             boolean ok = tool.isEffectiveAgainstBlock(block, meta);
             if (!ok) {
                 // 拒绝时留一条日志：用户实机测试全靠它核对（每次点击一条 ✓）
-                System.out.println("[CreateMITE][镐子闸] 拒绝 " + tool.getToolType() + "/"
+                System.out.println("[MITE][镐子闸] 拒绝 " + tool.getToolType() + "/"
                         + tool.getToolMaterialName() + "/lvl" + tool.getMaterialHarvestLevel()
                         + " 挖 " + block.getUnlocalizedName()
                         + "（六件套 = 镐类(镐+战锤) 且 等级 >= 材质等级 ✓）");
@@ -185,8 +185,8 @@ public final class ToolCompat {
             if (isPickaxeClass(tool.getToolType())) { pickCount++; if (picks.length() < 600) picks.append(tag).append("  "); }
             else { wrongCount++; if (wrong.length() < 600) wrong.append(tag).append("  "); }
         }
-        System.out.println("[CreateMITE][镐子闸] 六件套上有效的**镐类**（镐+战锤，" + pickCount + " 件）: " + picks);
-        System.out.println("[CreateMITE][镐子闸] 六件套上**非镐类**却有效的工具: "
+        System.out.println("[MITE][镐子闸] 六件套上有效的**镐类**（镐+战锤，" + pickCount + " 件）: " + picks);
+        System.out.println("[MITE][镐子闸] 六件套上**非镐类**却有效的工具: "
                 + (wrongCount == 0 ? "无 ✓（等于只能镐/战锤挖 ✓）" : wrongCount + " 件 ✗ → " + wrong));
     }
 
@@ -224,7 +224,7 @@ public final class ToolCompat {
     public static void registerMachineToolEffectiveness() {
         Block[] machines = machineBlocks();
         if (machines.length == 0) {
-            System.out.println("[CreateMITE][工具] 机器方块还没注册，跳过");
+            System.out.println("[MITE][工具] 机器方块还没注册，跳过");
             return;
         }
 
@@ -253,7 +253,7 @@ public final class ToolCompat {
                     + " | after=" + after);
         }
         logStrictPickaxeDiagnostics();
-        System.out.println("[CreateMITE][工具] 机器方块工具规则就绪：白名单 = "
+        System.out.println("[MITE][工具] 机器方块工具规则就绪：白名单 = "
                 + CMConfig.getString("mining.allowed_tool_types", DEFAULT_ALLOWED_TYPES)
                 + "，本次新登记 " + touched + " 件；闸门 = 白名单类别 **且** MITE 自己的 isEffectiveAgainstBlock ✓"
                 + "；等级读的是**每个方块自己的** getMinHarvestLevel(meta)：机器方块 = "

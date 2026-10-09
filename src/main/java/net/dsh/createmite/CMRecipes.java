@@ -26,23 +26,23 @@ public final class CMRecipes {
         //      热水碗 --5 分钟--> **温水碗** --3 分钟--> **水碗(1167)** ✓（用户 2026-10-07 补充后半段 ✓）
         if (CMItems.hotWaterBowl != null && net.minecraft.Item.itemsList[CMItems.ID_EMPTY_BOWL] != null) {
             FurnaceRecipes.smelting().addSmelting(1167, new ItemStack(CMItems.hotWaterBowl, 1));   // 水碗 → 热水碗 ✓
-            System.out.println("[CreateMITE] 热水碗熔炼已注册：水碗 → 热水碗（任意熔炉 ✓）");
+            System.out.println("[MITE] 热水碗熔炼已注册：水碗 → 热水碗（任意熔炉 ✓）");
         }
         if (CMItems.hotMilkBowl != null && net.minecraft.Item.itemsList[1166] != null) {
             FurnaceRecipes.smelting().addSmelting(1166, new ItemStack(CMItems.hotMilkBowl, 1));    // 牛奶碗 → 热牛奶碗 ✓
-            System.out.println("[CreateMITE] 热牛奶碗熔炼已注册：牛奶碗 → 热牛奶碗 ✓");
+            System.out.println("[MITE] 热牛奶碗熔炼已注册：牛奶碗 → 热牛奶碗 ✓");
         }
         for (int i = 0; i < CMItems.ID_MILK_BUCKETS.length; i++) {
             if (CMItems.hotMilkBucket[i] == null) continue;
             FurnaceRecipes.smelting().addSmelting(CMItems.ID_MILK_BUCKETS[i],
                     new ItemStack(CMItems.hotMilkBucket[i], 1));                                   // 奶桶 → 热奶桶 ✓
         }
-        System.out.println("[CreateMITE] 热奶桶熔炼已注册：7 种材质的奶桶 → 对应热奶桶 ✓");
+        System.out.println("[MITE] 热奶桶熔炼已注册：7 种材质的奶桶 → 对应热奶桶 ✓");
         if (CMItems.iceWaterBowl != null) {
             event.registerShapelessRecipe(new ItemStack(CMItems.iceWaterBowl, 1), false,
                     new ItemStack(net.minecraft.Item.itemsList[1167], 1, 0),                       // 水碗 ✓
                     new ItemStack(net.minecraft.Item.snowball, 1, 0));                             // 雪球 ✓
-            System.out.println("[CreateMITE] 冰水碗配方已注册：水碗 + 雪球（无序）→ 冰水碗 ✓");
+            System.out.println("[MITE] 冰水碗配方已注册：水碗 + 雪球（无序）→ 冰水碗 ✓");
         }
 
         // ================= ★ 套餐 A：苹果派线 ＋ 巧克力奶线（2026-10-07 用户拍板 ✓）=================
@@ -60,7 +60,7 @@ public final class CMRecipes {
                     new ItemStack(net.minecraft.Item.itemsList[CMItems.ID_APPLE], 1, 0),      // 苹果 ✓
                     new ItemStack(net.minecraft.Item.itemsList[CMItems.ID_SUGAR], 1, 0),      // 糖 ✓
                     new ItemStack(net.minecraft.Item.itemsList[CMItems.ID_EGG], 1, 0));       // 鸡蛋 ✓
-            System.out.println("[CreateMITE] 苹果派胚配方已注册：面团 + 苹果 + 糖 + 鸡蛋（无序）✓");
+            System.out.println("[MITE] 苹果派胚配方已注册：面团 + 苹果 + 糖 + 鸡蛋（无序）✓");
         }
         if (CMItems.hotApplePie != null && CMItems.applePieRaw != null) {
             FurnaceRecipes.smelting().addSmelting(CMItems.applePieRaw.itemID,
@@ -69,18 +69,18 @@ public final class CMRecipes {
         if (CMItems.hotApplePie != null && CMItems.applePie != null) {
             FurnaceRecipes.smelting().addSmelting(CMItems.applePie.itemID,
                     new ItemStack(CMItems.hotApplePie, 1));                                   // ★ 苹果派 → 回炉 → 热苹果派 ✓（用户批准 ✓）
-            System.out.println("[CreateMITE] 苹果派熔炼已注册：胚 → 热苹果派，苹果派 → 回炉 → 热苹果派 ✓");
+            System.out.println("[MITE] 苹果派熔炼已注册：胚 → 热苹果派，苹果派 → 回炉 → 热苹果派 ✓");
         }
         if (CMItems.chocolateMilkBowl != null) {
             event.registerShapelessRecipe(new ItemStack(CMItems.chocolateMilkBowl, 1), false,
                     new ItemStack(net.minecraft.Item.itemsList[CMItems.ID_CHOCOLATE], 1, 0),   // 巧克力 ✓
                     new ItemStack(net.minecraft.Item.itemsList[CMItems.ID_MILK_BOWL], 1, 0));  // 牛奶碗 ✓
-            System.out.println("[CreateMITE] 巧克力奶配方已注册：巧克力 + 牛奶碗（无序）✓");
+            System.out.println("[MITE] 巧克力奶配方已注册：巧克力 + 牛奶碗（无序）✓");
         }
         if (CMItems.hotChocolateMilkBowl != null && CMItems.chocolateMilkBowl != null) {
             FurnaceRecipes.smelting().addSmelting(CMItems.chocolateMilkBowl.itemID,
                     new ItemStack(CMItems.hotChocolateMilkBowl, 1));                          // 巧克力奶 → 热巧克力奶 ✓
-            System.out.println("[CreateMITE] 热巧克力奶熔炼已注册：巧克力奶 → 热巧克力奶 ✓");
+            System.out.println("[MITE] 热巧克力奶熔炼已注册：巧克力奶 → 热巧克力奶 ✓");
         }
 
         // ---- 锌/黄铜 ----
@@ -115,14 +115,14 @@ public final class CMRecipes {
             event.registerShapedRecipe(new ItemStack(CMItems.handWarmerCold, 2), false,
                     " C ", "C C", " C ",
                     Character.valueOf('C'), new ItemStack(Block.cobblestone, 1, 0));
-            System.out.println("[CreateMITE] 暖手石配方已注册：4 圆石（十字）→ 冷暖手石 ×2");
+            System.out.println("[MITE] 暖手石配方已注册：4 圆石（十字）→ 冷暖手石 ×2");
             if (CMItems.handWarmer != null) {
                 FurnaceRecipes.smelting().addSmelting(CMItems.handWarmerCold.itemID,
                         new ItemStack(CMItems.handWarmer, 1));
-                System.out.println("[CreateMITE] 暖手石熔炼已注册：冷暖手石 → 暖手石（任意熔炉 ✓）");
+                System.out.println("[MITE] 暖手石熔炼已注册：冷暖手石 → 暖手石（任意熔炉 ✓）");
             }
         } else {
-            System.out.println("[CreateMITE] ★ 冷暖手石未注册 → 两条配方已跳过");
+            System.out.println("[MITE] ★ 冷暖手石未注册 → 两条配方已跳过");
         }
 
         // ---- 锌粒（2026-09-28 新增）：**原版配方原样还原**，不改动 ✓ ----
@@ -136,7 +136,7 @@ public final class CMRecipes {
                     "###", "###", "###",
                     Character.valueOf('#'), new ItemStack(CMItems.zincNugget, 1, 0));
         } else {
-            System.out.println("[CreateMITE] ★ 锌粒未注册 → 锌粒的两条配方已跳过");
+            System.out.println("[MITE] ★ 锌粒未注册 → 锌粒的两条配方已跳过");
         }
 
         // ---- 黄铜粒（2026-09-28 新增）：和锌粒同构，1 黄铜锭 ↔ 9 黄铜粒 ✓ ----
@@ -147,7 +147,7 @@ public final class CMRecipes {
                     "###", "###", "###",
                     Character.valueOf('#'), new ItemStack(CMItems.brassNugget, 1, 0));
         } else {
-            System.out.println("[CreateMITE] ★ 黄铜粒未注册 → 黄铜粒的两条配方已跳过");
+            System.out.println("[MITE] ★ 黄铜粒未注册 → 黄铜粒的两条配方已跳过");
         }
 
         // ---- 金属/合金块（2026-09-28 新增）：9 锭 ↔ 1 块 ✓ ----
@@ -182,7 +182,7 @@ public final class CMRecipes {
                         Character.valueOf('B'), new ItemStack(Item.ironNugget, 1, 32767),
                         Character.valueOf('A'), new ItemStack(Block.cobblestone, 1, 0));
             } else {
-                System.out.println("[CreateMITE] ★ 没找到 MITE 的铁粒（Item.ironNugget）→ 只保留锌粒变体");
+                System.out.println("[MITE] ★ 没找到 MITE 的铁粒（Item.ironNugget）→ 只保留锌粒变体");
             }
 
             // 变体二：**锌粒** + 圆石（原版第二个变体 ✓）
@@ -192,7 +192,7 @@ public final class CMRecipes {
                         Character.valueOf('B'), new ItemStack(CMItems.zincNugget, 1, 0),
                         Character.valueOf('A'), new ItemStack(Block.cobblestone, 1, 0));
             } else {
-                System.out.println("[CreateMITE] ★ 锌粒未注册 → 安山合金配方退回「圆石 + 铁锭」版");
+                System.out.println("[MITE] ★ 锌粒未注册 → 安山合金配方退回「圆石 + 铁锭」版");
                 event.registerShapedRecipe(new ItemStack(CMItems.andesiteAlloy, 4), false,
                         "BA", "AB",
                         Character.valueOf('B'), new ItemStack(Item.ingotIron, 1, 0),
@@ -212,7 +212,7 @@ public final class CMRecipes {
             //   而 ItemBlock 的材质是从**方块材质**抄来的（Block.addItemBlockMaterials ✓）。
             //   所以：闸门完全由 CMBlocks 里那根传动杆的 Material 决定 ✓
             //     （铜/银/金 = 4.0 → 至少铜工作台 ✓；铁 = 8.0 → 至少铁工作台 ✓；秘银 = 64.0 → 至少秘银工作台 ✓）
-            //   启动日志里有一行「[CreateMITE] 传动杆工作台闸门: ...」可以自查 ✓
+            //   启动日志里有一行「[MITE] 传动杆工作台闸门: ...」可以自查 ✓
             registerMaterialShaftRecipe(event, CMBlocks.shaftCopper, Item.ingotCopper);
             registerMaterialShaftRecipe(event, CMBlocks.shaftSilver, Item.ingotSilver);
             registerMaterialShaftRecipe(event, CMBlocks.shaftGold, Item.ingotGold);
@@ -229,7 +229,7 @@ public final class CMRecipes {
                     Character.valueOf('S'), new ItemStack(Item.stick, 1, 0),
                     Character.valueOf('A'), new ItemStack(CMItems.andesiteAlloy, 1, 0));
         } else {
-            System.out.println("[CreateMITE] ★ 安山合金未注册 → 安山合金/传动轴/手摇曲柄配方已跳过");
+            System.out.println("[MITE] ★ 安山合金未注册 → 安山合金/传动轴/手摇曲柄配方已跳过");
         }
 
         // ★★ 齿轮 / 大齿轮：**改回原版合成方法**（2026-09-28 用户要求）
@@ -365,7 +365,7 @@ public final class CMRecipes {
                 new ItemStack(Block.wood, 1, 32767),
                 new ItemStack(CMItems.ingotBrass, 1, 0));
 
-        System.out.println("[CreateMITE] 配方已注册（含 M1 动力部件 + M2 批次 1 传动扩展 + M2 批次 2 新方块）");
+        System.out.println("[MITE] 配方已注册（含 M1 动力部件 + M2 批次 1 传动扩展 + M2 批次 2 新方块）");
     }
 
     /**
@@ -379,7 +379,7 @@ public final class CMRecipes {
     /** 注册一条"粉碎矿物 → 对应锭"的熔炼配方 ✓（任一边为 null 就跳过 ✓，不抛异常） */
     private static void addCrushedSmelting(Item crushed, Item ingot) {
         if (crushed == null || ingot == null) {
-            System.out.println("[CreateMITE] ★ 粉碎矿熔炼跳过（物品未注册）");
+            System.out.println("[MITE] ★ 粉碎矿熔炼跳过（物品未注册）");
             return;
         }
         FurnaceRecipes.smelting().addSmelting(crushed.itemID, new ItemStack(ingot, 1, 0));
@@ -414,7 +414,7 @@ public final class CMRecipes {
 
     private static void registerFurnaceStructureRecipes(RecipeRegistryEvent event) {
         if (CMBlocks.blockCobblestoneFurnaceCore == null || CMBlocks.blockShaft == null) {
-            System.out.println("[CreateMITE] ★ 熔炉六件套方块未注册 → 六条配方已跳过");
+            System.out.println("[MITE] ★ 熔炉六件套方块未注册 → 六条配方已跳过");
             return;
         }
         // ★ MITE 只给自己的方块设过"制造难度"，**原版石熔炉 Block[61] 没设** ✗ ——
@@ -426,7 +426,7 @@ public final class CMRecipes {
             float d = stoneFurnaceItem.getLowestCraftingDifficultyToProduce();
             if (d <= 0.0F || d >= Float.MAX_VALUE) {
                 stoneFurnaceItem.setLowestCraftingDifficultyToProduce(1600.0F);
-                System.out.println("[CreateMITE] 石熔炉的制造难度已补设为 1600（MITE 自己没给原版方块设过 ✓）");
+                System.out.println("[MITE] 石熔炉的制造难度已补设为 1600（MITE 自己没给原版方块设过 ✓）");
             }
         }
 
@@ -497,7 +497,7 @@ public final class CMRecipes {
                     Character.valueOf('S'), new ItemStack(CMBlocks.shaftMithril, 1, 0));
         }
 
-        System.out.println("[CreateMITE] 熔炉六件套配方已注册：圆石核心×3(铜/银/金工作台)+圆石传动杆"
+        System.out.println("[MITE] 熔炉六件套配方已注册：圆石核心×3(铜/银/金工作台)+圆石传动杆"
                 + " ｜ 黑曜石核心+传动杆(铁工作台) ｜ 地狱岩核心+传动杆(秘银工作台) —— 共 8 条 ✓");
     }
 
@@ -508,7 +508,7 @@ public final class CMRecipes {
      */
     private static void registerStorageRecipe(RecipeRegistryEvent event, Block block, Item item) {
         if (block == null || item == null) {
-            System.out.println("[CreateMITE] ★ 金属块配方跳过（方块或材料未注册）");
+            System.out.println("[MITE] ★ 金属块配方跳过（方块或材料未注册）");
             return;
         }
         event.registerShapedRecipe(new ItemStack(block, 1), false,

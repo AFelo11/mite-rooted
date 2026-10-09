@@ -284,7 +284,7 @@ public final class FurnaceMultiblock {
         boolean remote = world.isRemote;
         if (!WAKE_CALLED) {
             WAKE_CALLED = true;
-            System.out.println("[CreateMITE] wakeUp 被调用 @ " + x + "," + y + "," + z + " 客户端=" + remote);
+            System.out.println("[MITE] wakeUp 被调用 @ " + x + "," + y + "," + z + " 客户端=" + remote);
         }
         for (int i = 0; i < 27; i++) {
             int cx = x + OFF_DX[i], cy = y + OFF_DY[i], cz = z + OFF_DZ[i];
@@ -299,7 +299,7 @@ public final class FurnaceMultiblock {
             if (te instanceof FurnaceCoreTileEntity) {
                 if (!WAKE_LOGGED) {
                     WAKE_LOGGED = true;
-                    System.out.println("[CreateMITE] 大熔炉：包裹传动杆已叫醒核心 @ " + cx + "," + cy + "," + cz
+                    System.out.println("[MITE] 大熔炉：包裹传动杆已叫醒核心 @ " + cx + "," + cy + "," + cz
                             + "（老存档补 TE 那条路 ✓）");
                 }
                 ((FurnaceCoreTileEntity) te).markSelfCheck();
@@ -333,7 +333,7 @@ public final class FurnaceMultiblock {
             spillAt(world, cx, cy, cz);
             setMeta(world, cx, cy, cz, 0);
             markCasing(world, cx, cy, cz, false);
-            System.out.println("[CreateMITE] 大熔炉失型 @ " + cx + "," + cy + "," + cz);
+            System.out.println("[MITE] 大熔炉失型 @ " + cx + "," + cy + "," + cz);
             return;
         }
 
@@ -341,7 +341,7 @@ public final class FurnaceMultiblock {
             // 诊断（只在原因变化时打，避免刷屏）：让"为什么没成型"一眼可见 ✓
             if (!r.reason.equals(LAST_REASON)) {
                 LAST_REASON = r.reason;
-                System.out.println("[CreateMITE] 大熔炉自检未通过 @ " + cx + "," + cy + "," + cz + " : " + r.reason);
+                System.out.println("[MITE] 大熔炉自检未通过 @ " + cx + "," + cy + "," + cz + " : " + r.reason);
             }
             return;
         }
@@ -352,7 +352,7 @@ public final class FurnaceMultiblock {
         markCasing(world, cx, cy, cz, true);
         // ★ 2026-10-01 用户 ②：「提醒构建完成/被破坏的提示可以不需要了」⇒ 聊天栏提示**已整段删除** ✗
         //   （控制台那行日志**留着** ✓ —— 那是我排查用的，玩家看不到 ✓）
-        System.out.println("[CreateMITE] 大熔炉成型 @ " + cx + "," + cy + "," + cz
+        System.out.println("[MITE] 大熔炉成型 @ " + cx + "," + cy + "," + cz
                 + " 材质=" + r.material + " 机壳=" + r.casing + " 正面=" + frontName(front));
     }
 
@@ -453,21 +453,21 @@ public final class FurnaceMultiblock {
         if (world == null || player == null) return;
         int f = face == null ? -1 : face.ordinal();
         String side = world.isRemote ? "客户端" : "服务端";
-        System.out.println("[CreateMITE][UI] 右键 " + x + "," + y + "," + z + " 面=" + f + " " + side);
+        System.out.println("[MITE][UI] 右键 " + x + "," + y + "," + z + " 面=" + f + " " + side);
         if (f == 0 || f == 1) {                             // 底面 0 / 顶面 1 -> 不开 ✓
-            System.out.println("[CreateMITE][UI]  -> 顶面/底面，不开 ✓");
+            System.out.println("[MITE][UI]  -> 顶面/底面，不开 ✓");
             return;
         }
         int[] core = findFormedCoreNear(world, x, y, z);
         if (core == null) {
-            System.out.println("[CreateMITE][UI]  -> 附近没有成型核心，不开 ✗");
+            System.out.println("[MITE][UI]  -> 附近没有成型核心，不开 ✗");
             return;
         }
         int meta = world.getBlockMetadata(core[0], core[1], core[2]) & META_MASK;
         if (meta != 0) {
             int portFace = frontFace(frontOf(meta)) ^ 1;    // 正面 vs 传动口：世界面序 2/3 与 4/5 各自成对 ✓
             if (f == portFace) {                            // ★ 传动口那一面不开 ✓（用户 2026-09-30 指定）
-                System.out.println("[CreateMITE][UI]  -> 这一面是传动口，不开 ✓");
+                System.out.println("[MITE][UI]  -> 这一面是传动口，不开 ✓");
                 return;
             }
         }
@@ -483,7 +483,7 @@ public final class FurnaceMultiblock {
             return;
         }
         TileEntity te = world.getBlockTileEntity(core[0], core[1], core[2]);
-        System.out.println("[CreateMITE][UI]  -> 核心 TE = " + te);
+        System.out.println("[MITE][UI]  -> 核心 TE = " + te);
         if (te instanceof FurnaceCoreTileEntity) {
             BigFurnaceUi.open(player, (FurnaceCoreTileEntity) te);
         }
@@ -494,7 +494,7 @@ public final class FurnaceMultiblock {
         try {
             net.minecraft.server.MinecraftServer server = net.minecraft.server.MinecraftServer.getServer();
             if (server == null) {
-                System.out.println("[CreateMITE][UI]  -> 服务端还没起（server == null）✗");
+                System.out.println("[MITE][UI]  -> 服务端还没起（server == null）✗");
                 return;
             }
             net.minecraft.WorldServer sw = server.worldServerForDimension(clientPlayer.worldObj.provider.dimensionId);
@@ -507,16 +507,16 @@ public final class FurnaceMultiblock {
 
             int[] core = findFormedCoreNear(sw, x, y, z);
             if (core == null) {
-                System.out.println("[CreateMITE][UI]  -> 服务端那边没找到成型核心 ✗");
+                System.out.println("[MITE][UI]  -> 服务端那边没找到成型核心 ✗");
                 return;
             }
             TileEntity te = sw.getBlockTileEntity(core[0], core[1], core[2]);
-            System.out.println("[CreateMITE][UI]  -> 服务端核心 TE = " + te);
+            System.out.println("[MITE][UI]  -> 服务端核心 TE = " + te);
             if (te instanceof FurnaceCoreTileEntity) {
                 BigFurnaceUi.open(sp, (FurnaceCoreTileEntity) te);
             }
         } catch (Throwable t) {
-            System.out.println("[CreateMITE][UI]  -> 转服务端失败: " + t);
+            System.out.println("[MITE][UI]  -> 转服务端失败: " + t);
         }
     }
 

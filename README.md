@@ -4,7 +4,7 @@
 
 A native re-implementation of Create's kinetics and processing systems for **Minecraft 1.6.4 (MITE R196 + FishModLoader 3.4.2)**.
 
-**中文** · [English](#english)
+**中文** · [English](#english) · ☕ [赞助 / Support](https://afdian.com/a/H_MIU)
 
 ---
 
@@ -57,14 +57,14 @@ powershell -ExecutionPolicy Bypass -File build.ps1 -McDir "X:\...\.minecraft" -J
 - 热源：**营火**（+12，半径 12）、**暖手石**（+8，可反复烤热）。
 - 降温链：**热水碗** —5 分钟→ **温水碗** —3 分钟→ **水碗**；**冰水碗** = 水碗 + 雪球。
 
-### 五、食物与饮品
+### 五、食物与饮品（套餐 A）
 - 碗类饮料：热水碗 / 温水碗 / 冰水碗 / 热牛奶碗；热奶桶（7 种金属材质各一份）。
 - 喝完**返还容器**：碗还碗，奶桶还对应材质的空桶。
 - 苹果派线：苹果派胚 —熔炉→ 热苹果派 —放 5 分钟→ 苹果派（**可回炉再热**）。
 - 巧克力奶线：巧克力奶 —熔炉→ 热巧克力奶。
 - 每种食物/饮品都带自己的体感加成。
 
-### 六、动力网络
+### 六、动力网络（应力）
 - 动力源「提供」应力、设备「占用」应力；同一张网里**占用 > 提供**就过载（默认停机并提示，模式可配置）。
 - 传动件：传动轴、齿轮 / 大齿轮、手摇曲柄、水车 / 大型水车、机壳系列（安山岩、黄铜、铜等）。
 
@@ -90,6 +90,19 @@ powershell -ExecutionPolicy Bypass -File build.ps1 -McDir "X:\...\.minecraft" -J
 
 ### 九、其它
 工作台等级闸门（配方按工具等级解锁）、结构选择器（配合指令导出结构）、提示系统、玩家面板。
+### 十、必需脂肪（本项目的原创机制）
+原版 MITE 里「必需脂肪」只记录、不产生任何效果，也没有任何食物能补充它。本项目把它启用成了一整套**「保温换灵活」**的取舍：
+
+| 必需脂肪 | 体感温度 | 移动速度 | 手感 |
+| --- | --- | --- | --- |
+| ≥ 75% | **+1.5 ℃** | **×0.9** | 抗冻但笨重 |
+| 25% ~ 75% | 0 | ×1.0 | 中性 |
+| 5% ~ 25% | **−1.5 ℃** | **×1.1** | 轻快、开始怕冷 |
+| < 5% | **−3.0 ℃** | **×1.3** | 又轻又快，但冬天很难熬 |
+
+- **挨饿保护**：脂肪高于 65% 时，饥饿归零后的**掉血速率降为原版的 0.35 倍**；同时脂肪会被快速消耗到 50% 为止（约 2.5 分钟），烧完保护自动结束。
+- **补充方式**（共 28 种含脂食物，按「营养值 × 8000」计算）：奶制品（各种奶桶、一碗牛奶、奶酪、热牛奶碗、热奶桶）、甜点（蛋糕、南瓜派、巧克力、冰淇淋、苹果派）、以及猪肉。
+- 玩家面板（按 I）里那一行会显示当前档位：`体脂充足 / 正常 / 体脂偏低 / 体脂告急`。
 
 ## 操作
 
@@ -106,7 +119,6 @@ powershell -ExecutionPolicy Bypass -File build.ps1 -McDir "X:\...\.minecraft" -J
 
 | 指令 | 功能 |
 | --- | --- |
-| /P | 切换游戏模式 |
 | /O | 维度传送 |
 | /T | 导出结构 |
 | /cmf | 朝向信息 |
@@ -166,14 +178,14 @@ Five weather states distributed across the seasons; rain and snow affect ambient
 - Heat: **campfire** (+12, radius 12), **hand warmer** (+8, reheatable).
 - Cooling chain: **hot water bowl** —5 min→ **warm water bowl** —3 min→ **water bowl**; **ice water bowl** = water bowl + snowball.
 
-### 5. Food and drinks 
+### 5. Food and drinks (set A)
 - Bowl drinks: hot / warm / ice water bowls, hot milk bowl; hot milk buckets (one per metal, 7 kinds).
 - **Containers are returned** when drunk: bowls come back as bowls, buckets as their own metal's empty bucket.
 - Apple pie line: raw apple pie —furnace→ hot apple pie —5 min→ apple pie (can be **re-baked**).
 - Chocolate milk line: chocolate milk —furnace→ hot chocolate milk.
 - Every food/drink carries its own temperature effect.
 
-### 6. Kinetics network 
+### 6. Kinetics network (stress)
 - Generators **provide** stress, machines **consume** it; if consumption exceeds supply on the same network it overloads (default: stop and warn; the mode is configurable).
 - Components: shafts, cogwheels / large cogwheels, hand crank, water wheel / large water wheel, casing series (andesite, brass, copper, ...).
 
@@ -199,6 +211,19 @@ planks planks planks
 
 ### 9. Misc
 Workbench tier gating (recipes unlock by tool tier), structure selector (exports structures via command), hint system and player panel.
+### 10. Essential fats (an original mechanic of this project)
+In vanilla MITE the essential-fats value is tracked but has **no effect at all**, and no food can replenish it. This project turns it into a trade-off between **insulation and agility**:
+
+| Essential fats | Perceived temp | Movement speed | Feel |
+| --- | --- | --- | --- |
+| ≥ 75% | **+1.5 °C** | **×0.9** | Cold-resistant but heavy |
+| 25% – 75% | 0 | ×1.0 | Neutral |
+| 5% – 25% | **−1.5 °C** | **×1.1** | Light on your feet, but cold |
+| < 5% | **−3.0 °C** | **×1.3** | Fast and frail in winter |
+
+- **Starvation buffer**: while fats are above 65%, starvation damage is dealt at **0.35x the vanilla rate**; the reserve burns down to 50% in about 2.5 minutes, after which the protection ends.
+- **Sources** (28 fatty foods, each giving nutrition × 8000): dairy (all milk buckets, milk bowl, cheese, hot milk bowl, hot milk buckets), desserts (cake, pumpkin pie, chocolate, ice cream, apple pie) and pork.
+- The player panel (press I) shows the current tier: abundant / normal / low / critical.
 
 ## Controls
 
@@ -215,7 +240,6 @@ Both are rebindable in Options → Controls.
 
 | Command | Function |
 | --- | --- |
-| /P | Switch game mode |
 | /O | Dimension teleport |
 | /T | Export structure |
 | /cmf | Facing information |
@@ -295,6 +319,16 @@ Both are rebindable in Options → Controls.
 | 2374 | 温水碗 | Bowl of Warm Water |
 | 2360 | 扳手 | Wrench |
 | 2362 | 锌粒 | Zinc Nugget |
+
+---
+
+## 赞助 / Support
+
+如果这个项目让你玩得开心，欢迎请我喝杯咖啡 ☕（爱发电）：
+
+**<https://afdian.com/a/H_MIU>**
+
+If you enjoy this project, you can support me on Afdian: **<https://afdian.com/a/H_MIU>**
 
 ---
 

@@ -10,7 +10,7 @@ import java.io.Writer;
 import java.util.Properties;
 
 /**
- * Create x MITE 配置：config/createmite.properties
+ * MITE-扎根 配置：config/createmite.properties
  *
  * 为什么用 .properties 而不是 FML 的配置系统：
  * 本工程里的 mite-cheat-unlock 已经用同一套写法（相对路径 config/xxx.properties，
@@ -355,47 +355,18 @@ public final class CMConfig {
        + "# 想大面积上冻就调大（24 = 384 格 / 48 = 768 格），代价是扫完一遍更久；上限 48 ✓\n"
        + "# ⚠️ 只处理**已加载**的区块 ✗，而且只冻 y >= 60 的**露天水面** ✓\n"
        + "seasons.ice_radius_chunks = 12"},
-        {"panel.thermometer_debug",
-         "# 玩家面板（I 键）里两根温度计的**调试假数据**：\n"
-       + "#   0 = 关（默认）。体温 / 环境温度都显示「未知」—— 这是正常状态：\n"
-       + "#       体温要等**四季系统**注入，环境温度要等**饰品系统**（戴上测温饰品才显示）✓\n"
-       + "#   1 = 开。用慢速来回走的假数据驱动两根温度计，只为看外观 / 动画 ✓（纯客户端 ✓）\n"
-       + "panel.thermometer_debug = 0"},
         {"temp.enabled",
          "# ---- 四季温度与体温（2026-10-01 开工）----\n"
        + "# 环境温度 = 季节温度（摄氏度，与玩家所处环境无关）：\n"
        + "#   春 1~25 / 夏 18~39 / 秋 10~28 / 冬 -10~17（每季分 3 段，见计划书）\n"
        + "#   · 每 2 分钟（真实时间 = 2400 tick）换一次值，始终落在当天区间内、平滑游走\n"
        + "#   · 段与段之间用 2 天过渡（用户 2026-10-01 定），不再出现 20 度的断崖\n"
-       + "#   · 它只喂给玩家体温 / 以后的环境温度饰品；冬季结冰那套完全不受影响（仍是原版机制）\n"
+       + "#   · **体感温度**；冬季结冰那套完全不受影响（仍是原版机制）\n"
        + "#   0 = 关掉整套温度系统（体温不动、没有 buff、饥饿倍率恒为 1）\n"
        + "temp.enabled = 1"},
-        {"temp.body_enabled",
-         "# 玩家体温单独开关：0 = 只算环境温度、不动体温（默认 1）\n"
-       + "temp.body_enabled = 1"},
         {"temp.ambient_step_ticks",
          "# 环境温度多久换一次值（tick，默认 2400 = 真实 2 分钟，用户指定）\n"
        + "temp.ambient_step_ticks = 2400"},
-        {"temp.body_rate",
-         "# 体温向目标逼近的快慢（每 tick 的比例，默认 0.0005，约 100 秒走完 63%）\n"
-       + "# 调大 = 忽冷忽热更刺激；调小 = 更迟钝。上限 0.05\n"
-       + "temp.body_rate = 0.0005"},
-        {"temp.lava_radius",
-         "# 岩浆影响体温的半径（格，默认 12，用户指定）：范围内体温逐渐升到 39 度上限\n"
-       + "# 泡在水里时以水为准（用户 2026-10-01 裁定）：水温把体温压到 35.7 度\n"
-       + "temp.lava_radius = 12"},
-        {"temp.accelerate_after_ticks",
-         "# 同一档待满多久开始加速（tick，默认 6000 = 真实 5 分钟，用户指定）\n"
-       + "# 加速 = 逼近速度最多 x3 + 目标再往极端推，不是硬钳死（用户选的 B 方案）\n"
-       + "temp.accelerate_after_ticks = 6000"},
-        {"temp.accelerate_push",
-         "# 加速阶段把目标体温再往极端推多少（度，默认 1.0）\n"
-       + "temp.accelerate_push = 1.0"},
-        {"panel.body_thermometer_needs_accessory",
-         "# 体温计（I 键面板右边那根）要不要先戴饰品才显示：\n"
-       + "#   0 = 不用（默认，当前状态：四季已上线，体温直接显示）\n"
-       + "#   1 = 要（等体温计饰品做好后改成 1，就是\"没戴 = 未知\"）\n"
-       + "panel.body_thermometer_needs_accessory = 0"},
         {"accessory.gui_min_left",
          "# ---- 饰品系统（2026-10-01）----\n"
        + "# 背包界面（GUI 单位）左边缘至少留出多少格：\n"
@@ -427,11 +398,6 @@ public final class CMConfig {
        + "#   夏天淋雨按不对称公式只掉 0.11 度，肉眼看不出来，所以再直接降一点\n"
        + "temp.rain_body = 0.30"},
         {"temp.snow_body", "temp.snow_body = 0.60"},
-        {"panel.ambient_thermometer_needs_accessory",
-         "# 环境温度计（I 键面板左边第二根）要不要先戴饰品才显示：\n"
-       + "#   0 = 不用（默认，当前状态：直接显示四季环境温度，摄氏度）\n"
-       + "#   1 = 要（环境温度计饰品做好后改成 1）\n"
-       + "panel.ambient_thermometer_needs_accessory = 0"},
     };
 
     private static Properties props = null;
@@ -452,7 +418,7 @@ public final class CMConfig {
                 } finally {
                     w.close();
                 }
-                System.out.println("[CreateMITE] 已生成默认配置: " + f.getAbsolutePath());
+                System.out.println("[MITE] 已生成默认配置: " + f.getAbsolutePath());
             }
             Reader r = new InputStreamReader(new FileInputStream(f), "UTF-8");
             try {
@@ -462,7 +428,7 @@ public final class CMConfig {
             }
             appendMissing(f);
         } catch (Throwable t) {
-            System.out.println("[CreateMITE] 读取配置失败，全部使用默认值: " + t);
+            System.out.println("[MITE] 读取配置失败，全部使用默认值: " + t);
         }
     }
 
@@ -481,9 +447,9 @@ public final class CMConfig {
             } finally {
                 w.close();
             }
-            System.out.println("[CreateMITE] 配置文件缺少新项，已自动追加到 " + f.getAbsolutePath());
+            System.out.println("[MITE] 配置文件缺少新项，已自动追加到 " + f.getAbsolutePath());
         } catch (Throwable t) {
-            System.out.println("[CreateMITE] 追加新配置项失败（不影响运行，用的都是默认值）: " + t);
+            System.out.println("[MITE] 追加新配置项失败（不影响运行，用的都是默认值）: " + t);
         }
     }
 
@@ -495,7 +461,7 @@ public final class CMConfig {
         try {
             return Float.parseFloat(v.trim());
         } catch (Throwable t) {
-            System.out.println("[CreateMITE] 配置项 " + key + " 不是数字（" + v + "），改用默认值 " + def);
+            System.out.println("[MITE] 配置项 " + key + " 不是数字（" + v + "），改用默认值 " + def);
             return def;
         }
     }
@@ -530,7 +496,7 @@ public final class CMConfig {
         if (v.equals("slow")) return OverstressMode.SLOW;
         if (v.equals("ignore")) return OverstressMode.IGNORE;
         if (!v.equals("stop")) {
-            System.out.println("[CreateMITE] 配置项 overstress.mode = " + v + " 不认识，按 stop 处理");
+            System.out.println("[MITE] 配置项 overstress.mode = " + v + " 不认识，按 stop 处理");
         }
         return OverstressMode.STOP;
     }

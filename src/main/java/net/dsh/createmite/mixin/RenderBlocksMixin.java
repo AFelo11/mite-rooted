@@ -64,7 +64,7 @@ public abstract class RenderBlocksMixin {
                 net.minecraft.World w = mc == null ? null : mc.theWorld;
                 if (w != null && w.isRemote) w.getBlockTileEntity(x, y, z);
             } catch (Throwable t) {
-                System.out.println("[CreateMITE] 补核心方块实体失败: " + t);
+                System.out.println("[MITE] 补核心方块实体失败: " + t);
             }
         }
         cir.setReturnValue(false);

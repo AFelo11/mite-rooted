@@ -152,7 +152,7 @@ public abstract class BlockKineticBase extends Block implements net.minecraft.IT
             }
             world.playSoundEffect((double) x + 0.5D, (double) y + 0.5D, (double) z + 0.5D,
                     "tile.piston.out", 0.4F, 1.6F);
-            System.out.println("[CreateMITE][ENCASE] server -> " + target.getUnlocalizedName()
+            System.out.println("[MITE][ENCASE] server -> " + target.getUnlocalizedName()
                     + " @ " + x + "," + y + "," + z + " axis=" + axis + " brass=" + brass);
             // ★ 2026-09-28：**所有**机械动力的聊天栏提示都归 CMHints 管（键位 V 开关）✓
             if (net.dsh.createmite.CMHints.enabled(player)) {

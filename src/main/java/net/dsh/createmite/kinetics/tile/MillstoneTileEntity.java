@@ -263,7 +263,7 @@ public class MillstoneTileEntity extends KineticTileEntity {
             if (!net.dsh.createmite.CMHints.enabled(p)) continue;
             p.addChatMessage("§7[石磨] §e吸进原料了，但石磨没有转§7 — 它只能被"
                     + "「水平相邻、轴向也为竖直」的齿轮带动（传动轴 / 手摇曲柄直接接上来是无效的）。"
-                    + " 空手右键石磨可以查看状态，关掉本提示：§f按 V 键（机械动力提示开关）");
+                    + " 空手右键石磨可以查看状态，关掉本提示：§f按 V 键（提示开关）");
         }
     }
 

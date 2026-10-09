@@ -38,7 +38,7 @@ public final class CMAmbientFeel {
     public static boolean isForced() { return !Float.isNaN(forced); }
 
     /** 配置默认值（都没进 CMConfig，先用代码常量 ✓ 要调再说 ✓） */
-    // ★ 2026-10-02 用户定稿（都在 CMBodyTemp.tick 那条路上，和原版回血机制**无关** ✓）：
+    // ★ 2026-10-02 用户定稿（都在本类 tick 那条路上 ✓ 由 FeelTickMixin 每 tick 驱动）：
     //   · 舒适档回血 = **40 秒 1 点**（原版 MITE 的强度 ✓ 用户指定 ✓）
     //   · 冻伤掉血   = **60 秒 1 点**（极慢 ✓ "几乎没感觉但不能让人觉得没惩罚" ✓）
     //   · 灼热掉血   = **60 秒 1 点**（同上 ✓ 原来 5 秒太狠 ✗ 已削）
@@ -258,7 +258,8 @@ public final class CMAmbientFeel {
         //     ① 环境（方块热源 ✓ CMHeat.blockHeat）② 物品（暖手石 ✓ CMHeat.itemHeat）
         //     ③ 食物（CMFood.foodHeat ✓）—— 三者**相加** ✓
         float feel = season + altitudeMod(p) + biomeMod(w, p) + weatherMod(p)
-                   + CMHeat.blockHeat(p) + CMHeat.itemHeat(p) + CMFood.foodHeat(p);
+                   + CMHeat.blockHeat(p) + CMHeat.itemHeat(p) + CMFood.foodHeat(p)
+            + net.dsh.createmite.CMFats.insulation();   // fats insulation hook;
         if (y < 50) feel = Math.max(feel, 10.0F);    // 地下有下限 ✓
         return feel;
     }
@@ -365,7 +366,7 @@ public final class CMAmbientFeel {
             effLogS = now;
         }
         int t = tierCached(p);
-        System.out.println("[CreateMITE][FEEL-EFF-" + (remote ? "C" : "S") + "]"
+        System.out.println("[MITE][FEEL-EFF-" + (remote ? "C" : "S") + "]"
                 + " tier=" + t + " dig=" + digPercent(t) + "% move=" + movePercent(t) + "%"
                 + " " + kind + " " + Float.toString(before) + "->" + Float.toString(after)
                 + (isForced() ? " forced=" + CMAmbient.fmt(forced) : ""));
@@ -448,7 +449,7 @@ public final class CMAmbientFeel {
         return v.intValue();
     }
 
-    /** 挂在 CMBodyTemp.tick 里每 tick 调一次（只在服务端 ✓）*/
+    /** 由 FeelTickMixin 每 tick 调一次（只在服务端 ✓；2026-10-09 体温系统卸载后入口就是它 ✓）*/
     // ================= ★ 取数统计（2026-10-02 用户要求：掉血/回血肉眼看不出来 ⇒ 用日志看 ✓）===
     private static int statPass = 0, statBlock = 0, statDmg = 0;
     private static long statLast = 0L;
@@ -464,7 +465,7 @@ public final class CMAmbientFeel {
         if (statLast == 0L) { statLast = now; return; }
         if (now - statLast < 30000L) return;
         statLast = now;
-        System.out.println("[CreateMITE][体感] " + p.getCommandSenderName()
+        System.out.println("[MITE][体感] " + p.getCommandSenderName()
                 + " 体感=" + CMAmbient.fmt(feel) + "C 档=" + tierName(t)
                 + " 回血系数=" + ((int) (regenMultiplier(t) * 100.0F)) + "%"
                 + " | 近30秒: 放行=" + statPass + " 挡掉=" + statBlock + " 掉血=" + statDmg + "点"
@@ -517,7 +518,7 @@ public final class CMAmbientFeel {
             float v = now - hp;
             p.setHealth(v < 0.0F ? 0.0F : v);
             statDmg += (int) hp;
-            System.out.println("[CreateMITE][体感] 掉血 " + CMAmbient.fmt(hp) + " 点"
+            System.out.println("[MITE][体感] 掉血 " + CMAmbient.fmt(hp) + " 点"
                     + "（" + (tierOf(feel(p)) == TIER_FREEZE ? "冻伤" : "灼热") + "）血=" + CMAmbient.fmt(p.getHealth()));
         } catch (Throwable ignored) { }
     }

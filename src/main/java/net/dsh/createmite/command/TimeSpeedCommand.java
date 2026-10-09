@@ -62,7 +62,7 @@ public class TimeSpeedCommand extends CommandBase {
             sender.sendChatToPlayer(msg("时间流速 = **" + net.dsh.createmite.CMTimeSpeed.multiplier() + " 倍**"
                     + (v == 0.0F ? "（时间暂停 ✓）" : "")));
         } catch (Throwable t) {
-            System.out.println("[CreateMITE] /S 出错: " + t);
+            System.out.println("[MITE] /S 出错: " + t);
             sender.sendChatToPlayer(msg("/S 出错: " + t));
         }
     }

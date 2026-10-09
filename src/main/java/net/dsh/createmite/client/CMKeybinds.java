@@ -5,11 +5,12 @@ import net.minecraft.KeyBinding;
 import net.minecraft.Minecraft;
 
 /**
- * 客户端按键绑定：「机械动力提示」开关（默认 **V**，默认**开**）。
+ * 客户端按键绑定：「提示」开关（默认 **V**，默认**开**）。
  *
  * 【为什么从 /M 0|1 改成按键】用户要求：
- *   「/M 0 指令是你弄的，现在我需要你改成键位 V 开关（按键设置里的名称为：机械动力提示）（开关默认开启）」
+ *   「/M 0 指令是你弄的，现在我需要你改成键位 V 开关（按键设置里的名称为：MITE提示）（开关默认开启）」
  *   —— 聊天栏开关每次都要打字太麻烦，改成按一下 V 就切。
+ *   （2026-10-09 定稿：这个显示名最终就叫「提示」✓ 下面提到的 MITE提示 都是指它）
  *
  * 【为什么按 V 是"发一条指令"而不是自己发包】
  *   真正拦消息的地方在**服务端**（见 CMHints：它按玩家名记一个禁用集合，
@@ -23,7 +24,7 @@ import net.minecraft.Minecraft;
  *   1.6.4 的 GuiControls 直接遍历 GameSettings.keyBindings ✓，所以只要把 KeyBinding 追加进去；
  *   2. 追加后**必须**调 KeyBinding.resetKeyBindingArrayAndHash()（KeyBinding 靠静态 hash 表查键）✗；
  *   3. 显示名走 I18n：description 给 "key.createmite.hints"，
- *      中文翻译在 CreateMite.onLanguageReload 里注册成「机械动力提示」✓。
+ *      中文翻译在 CreateMite.onLanguageReload 里注册成「提示」✓（2026-10-09 定稿；早先按 MITE提示 称呼它）。
  */
 public final class CMKeybinds {
 
@@ -96,7 +97,7 @@ public final class CMKeybinds {
         if (!cm$contains(cur, statusBinding)) next[k++] = statusBinding;
         gs.keyBindings = next;
         KeyBinding.resetKeyBindingArrayAndHash();      // ★ 少了这一句按键根本不生效
-        System.out.println("[CreateMITE] 按键已挂上: " + HINT_KEY_DESC + "=V ｜ " + STATUS_KEY_DESC + "=I");
+        System.out.println("[MITE] 按键已挂上: " + HINT_KEY_DESC + "=V ｜ " + STATUS_KEY_DESC + "=I");
     }
 
     /** 表里是不是已经有这一条了 */
@@ -112,7 +113,7 @@ public final class CMKeybinds {
         ensureRegistered();
         Minecraft mc = Minecraft.getMinecraft();
 
-        // ---------- V：机械动力提示 开关 ----------
+        // ---------- V：提示 开关 ----------
         KeyBinding kb = hintBinding;
         if (kb != null && kb.pressed) {
             kb.pressed = false;    // ★ 必须手动清：不清就会"按一下触发好几 tick"

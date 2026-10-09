@@ -312,7 +312,7 @@ public class FurnaceCoreTileEntity extends TileEntity implements IInventory {
             for (int k = 0; k < mats; k++) if (this.getStackInSlot(k) != null) filled++;
             ItemStack f = this.getStackInSlot(this.fuelSlot());
             ItemStack p0 = this.getStackInSlot(this.productStart());
-            System.out.println("[CreateMITE][大熔炉] 燃烧值=" + this.heatCurrent + "/" + cap
+            System.out.println("[MITE][大熔炉] 燃烧值=" + this.heatCurrent + "/" + cap
                     + " 本炉上限=" + this.heatCeiling()
                     + " 材料=" + filled + "/" + mats
                     + " 燃料=" + (f == null ? "空" : (f.stackSize + "个"))

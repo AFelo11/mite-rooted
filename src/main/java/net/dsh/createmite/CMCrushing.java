@@ -140,10 +140,10 @@ public final class CMCrushing {
                 }
                 MAP.put(in, new Recipe(out, time, bonusIds, bonusChances));
             } catch (Throwable t) {
-                System.out.println("[CreateMITE] 粉碎配方解析失败: " + row + " (" + t + ")");
+                System.out.println("[MITE] 粉碎配方解析失败: " + row + " (" + t + ")");
             }
         }
-        System.out.println("[CreateMITE] 粉碎配方 " + MAP.size() + " 条");
+        System.out.println("[MITE] 粉碎配方 " + MAP.size() + " 条");
     }
 
     /** 有没有这个物品的配方（没配方就不该吸进去） */

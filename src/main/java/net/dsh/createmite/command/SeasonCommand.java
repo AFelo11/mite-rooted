@@ -108,16 +108,10 @@ public class SeasonCommand extends CommandBase {
                     sender.sendChatToPlayer(msg("跳到" + CMSeasons.seasonName(CMSeasons.currentSeason())
                             + "季第 " + day + " 天"));
                     sender.sendChatToPlayer(msg(net.dsh.createmite.CMAmbient.reportLine(world)));      // ★ 环境温度 ✓
-                    if (player != null) {
-                        sender.sendChatToPlayer(msg(net.dsh.createmite.CMBodyTemp.reportLine(player))); // ★ 体温 ✓
-                    }
                     return;
                 }
                 sender.sendChatToPlayer(msg(CMSeasons.reportLine(world)));
                 sender.sendChatToPlayer(msg(net.dsh.createmite.CMAmbient.reportLine(world)));      // ★ 环境温度 ✓
-                if (player != null) {
-                    sender.sendChatToPlayer(msg(net.dsh.createmite.CMBodyTemp.reportLine(player))); // ★ 体温 ✓
-                }
                 return;
             }
 
@@ -164,20 +158,7 @@ public class SeasonCommand extends CommandBase {
                 return;
             }
 
-            if (false) {   // ★ 2026-10-02：/se T 已删除 ✗（体温系统卸载 ✓ 请用 /se F 设体感温度）
-                if (args.length < 2 || player == null) {
-                    sender.sendChatToPlayer(msg("用法：/se T 38.5（只能玩家自己用）"));
-                    return;
-                }
-                try {
-                    float v = Float.parseFloat(args[1].trim());
-                    net.dsh.createmite.CMBodyTemp.setTemperature(player, v);
-                    sender.sendChatToPlayer(msg("体温已设为 " + net.dsh.createmite.CMAmbient.fmt(v) + " 度"));
-                } catch (Throwable t) {
-                    sender.sendChatToPlayer(msg("用法：/se T 38.5"));
-                }
-                return;
-            }
+            // ★ 2026-10-09：/se T 整块删掉 ✓（体温系统已卸载 ⇒ 只剩 /se F 设体感温度 ✓）
 
             int v;
             try {
@@ -203,7 +184,7 @@ public class SeasonCommand extends CommandBase {
             net.dsh.createmite.CMSeasonsWeather.invalidateTodayCache(world);       // ★ 天气表立即生效 ✓
             sender.sendChatToPlayer(msg("跳到" + CMSeasons.seasonName(v) + "季"));
         } catch (Throwable t) {
-            System.out.println("[CreateMITE] /se 出错: " + t);
+            System.out.println("[MITE] /se 出错: " + t);
             sender.sendChatToPlayer(msg("/se 出错: " + t));
         }
     }

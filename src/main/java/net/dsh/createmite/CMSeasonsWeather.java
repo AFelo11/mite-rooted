@@ -124,9 +124,9 @@ public final class CMSeasonsWeather {
             java.lang.reflect.Field f = World.class.getDeclaredField("weather_events_for_day");
             f.setAccessible(true);
             f.setInt(world, -1);
-            System.out.println("[CreateMITE][四季][天气] 已作废今天的天气表缓存 ✓（跳季立刻生效 ✓）");
+            System.out.println("[MITE][四季][天气] 已作废今天的天气表缓存 ✓（跳季立刻生效 ✓）");
         } catch (Throwable t) {
-            System.out.println("[CreateMITE][四季][天气] 作废天气表缓存失败（不影响运行）: " + t);
+            System.out.println("[MITE][四季][天气] 作废天气表缓存失败（不影响运行）: " + t);
         }
     }
 }

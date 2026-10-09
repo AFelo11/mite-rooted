@@ -79,7 +79,7 @@ public class BlockCampfire extends Block implements net.minecraft.ITileEntityPro
     public void breakBlock(World world, int x, int y, int z, int blockID, int meta) {
         if (!SWAPPING) {
             try { world.removeBlockTileEntity(x, y, z); } catch (Throwable ignored) { }
-            try { CampfireForm.demolishLater(world, x, y, z, true); } catch (Throwable t) { System.out.println("[CreateMITE][CAMPFIRE] 拆除登记失败: " + t); }
+            try { CampfireForm.demolishLater(world, x, y, z, true); } catch (Throwable t) { System.out.println("[MITE][CAMPFIRE] 拆除登记失败: " + t); }
         }
         super.breakBlock(world, x, y, z, blockID, meta);
     }
@@ -124,7 +124,7 @@ public class BlockCampfire extends Block implements net.minecraft.ITileEntityPro
             if (!cf.addWood(world)) return false;
             try { if (held.stackSize > 1) held.stackSize--; else player.setHeldItemStack(null); } catch (Throwable ignored) { }
             try { world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, "step.wood", 0.7F, 1.0F); } catch (Throwable ignored) { }
-            System.out.println("[CreateMITE][CAMPFIRE] addWood " + x + "," + y + "," + z + " wood=" + cf.woodAdded());
+            System.out.println("[MITE][CAMPFIRE] addWood " + x + "," + y + "," + z + " wood=" + cf.woodAdded());
             return true;
         }
         if (!isFlint(held)) return false;
@@ -138,7 +138,7 @@ public class BlockCampfire extends Block implements net.minecraft.ITileEntityPro
             }
             world.spawnParticle(net.minecraft.EnumParticle.smoke, x + 0.5D, y + 0.9D, z + 0.5D, 0.0D, 0.01D, 0.0D);
         } catch (Throwable ignored) { }
-        System.out.println("[CreateMITE][CAMPFIRE] ignite " + x + "," + y + "," + z);
+        System.out.println("[MITE][CAMPFIRE] ignite " + x + "," + y + "," + z);
         return true;
     }
 

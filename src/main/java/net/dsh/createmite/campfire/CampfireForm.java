@@ -86,7 +86,7 @@ public final class CampfireForm {
             if (PENDING_W.get(i) != w) continue;
             int[] c = PENDING.remove(i);
             PENDING_W.remove(i);
-            try { form(w, c[0], c[1], c[2]); } catch (Throwable t) { System.out.println("[CreateMITE][CAMPFIRE] 成型失败: " + t); }
+            try { form(w, c[0], c[1], c[2]); } catch (Throwable t) { System.out.println("[MITE][CAMPFIRE] 成型失败: " + t); }
         }
     }
 
@@ -111,7 +111,7 @@ public final class CampfireForm {
         }
         DEMO.add(new int[] { cx, cy, cz, x, y, z });
         DEMO_W.add(w);
-        System.out.println("[CreateMITE][CAMPFIRE] 拆除登记 " + cx + "," + cy + "," + cz + "（下一 tick 清空 3x3 ✓）");
+        System.out.println("[MITE][CAMPFIRE] 拆除登记 " + cx + "," + cy + "," + cz + "（下一 tick 清空 3x3 ✓）");
     }
 
     private static int[] findCore(World w, int x, int y, int z) {
@@ -155,9 +155,9 @@ public final class CampfireForm {
                         if (isCampfire(id)) clear(w, c[3] + dx, c[4], c[5] + dz);
                     }
                 }
-                System.out.println("[CreateMITE][CAMPFIRE] demolished 3x3 at " + c[0] + "," + c[1] + "," + c[2] + "（不掉落 ✓）");
+                System.out.println("[MITE][CAMPFIRE] demolished 3x3 at " + c[0] + "," + c[1] + "," + c[2] + "（不掉落 ✓）");
             } catch (Throwable t) {
-                System.out.println("[CreateMITE][CAMPFIRE] 拆除失败: " + t);
+                System.out.println("[MITE][CAMPFIRE] 拆除失败: " + t);
             } finally {
                 DEMOLISHING = false;
             }
@@ -198,8 +198,8 @@ public final class CampfireForm {
                 fresh.xCoord = cx; fresh.yCoord = cy; fresh.zCoord = cz;
                 w.setBlockTileEntity(cx, cy, cz, fresh);
             }
-        } catch (Throwable t) { System.out.println("[CreateMITE][CAMPFIRE] 挂 TE 失败: " + t); }
-        System.out.println("[CreateMITE][CAMPFIRE] formed 3x3 at " + cx + "," + cy + "," + cz + "（中心=核心 ✓）");
+        } catch (Throwable t) { System.out.println("[MITE][CAMPFIRE] 挂 TE 失败: " + t); }
+        System.out.println("[MITE][CAMPFIRE] formed 3x3 at " + cx + "," + cy + "," + cz + "（中心=核心 ✓）");
     }
 
     private static void set(World w, int x, int y, int z, int blockID) {

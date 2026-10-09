@@ -118,7 +118,7 @@ public class TileCampfire extends TileEntity {
                 world.setBlockTileEntity(xCoord, yCoord, zCoord, fresh);
                 fresh.validate();
             }
-        } catch (Throwable t) { System.out.println("[CreateMITE][CAMPFIRE] swap TE 失败: " + t); }
+        } catch (Throwable t) { System.out.println("[MITE][CAMPFIRE] swap TE 失败: " + t); }
     }
 
     // ---------------------------------------------------------------- NBT

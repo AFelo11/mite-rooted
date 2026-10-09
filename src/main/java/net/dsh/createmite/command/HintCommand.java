@@ -79,8 +79,8 @@ public class HintCommand extends CommandBase {
         }
         CMHints.setEnabled(player, on);
         sender.sendChatToPlayer(createMessage(on
-                ? "§a已开启机械动力提示 §7（按 V 键随时切换）"
-                : "§e已关闭机械动力提示 §7（按 V 键随时切换）"));
+                ? "§a已开启提示"
+                : "§e已关闭提示"));
     }
 
     private static ChatMessageComponent createMessage(String text) {

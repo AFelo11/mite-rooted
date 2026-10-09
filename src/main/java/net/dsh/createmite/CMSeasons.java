@@ -469,7 +469,7 @@ public final class CMSeasons {
                 : (int) Math.floorMod((long) world.getDayOfWorld() + phaseOffsetDays, (long) DAYS_PER_YEAR);
         phaseOffsetDays += (targetDoy - todayDoy);
         invalidateColorCache();                 // ★ 跳季：颜色缓存作废，下一 tick 立刻重算 ✓
-        System.out.println("[CreateMITE][四季] /se " + target + " → 相位偏移变为 " + phaseOffsetDays + " 天");
+        System.out.println("[MITE][四季] /se " + target + " → 相位偏移变为 " + phaseOffsetDays + " 天");
     }
 
     public static int phaseOffsetDays() {
@@ -653,7 +653,7 @@ public final class CMSeasons {
             rawSunrise = World.getTimeOfSunrise();
             rawSunset = World.getTimeOfSunset();
             rawSleeping = World.getTimeOfSleeping();
-            System.out.println("[CreateMITE][四季][昼夜] 锚点：日出=" + rawSunrise + " 日落="
+            System.out.println("[MITE][四季][昼夜] 锚点：日出=" + rawSunrise + " 日落="
                     + rawSunset + " 睡觉=" + rawSleeping + " ✓");
         } catch (Throwable t) {
             rawSunrise = 0; rawSunset = 12000; rawSleeping = 13000;
@@ -778,13 +778,13 @@ public final class CMSeasons {
                 : (int) Math.floorMod((long) world.getDayOfWorld() + phaseOffsetDays, (long) DAYS_PER_YEAR);
         phaseOffsetDays += (targetDoy - todayDoy);
         invalidateColorCache();                 // ★ 同上 ✓
-        System.out.println("[CreateMITE][四季] /se R " + dayInSeason + " → 相位偏移变为 " + phaseOffsetDays + " 天");
+        System.out.println("[MITE][四季] /se R " + dayInSeason + " → 相位偏移变为 " + phaseOffsetDays + " 天");
     }
 
     /** `/se 9` —— 清掉相位偏移，回到"按世界天数"的配置默认 ✓ */
     public static void clearPhase() {
         phaseOffsetDays = 0;
-        System.out.println("[CreateMITE][四季] 相位偏移已清除 ✓");
+        System.out.println("[MITE][四季] 相位偏移已清除 ✓");
     }
 
     // ------------------------------------------------------------------
@@ -1019,13 +1019,13 @@ public final class CMSeasons {
         long now = world.getTotalWorldTime();
         if (iceLogTick == Long.MIN_VALUE) {
             iceLogTick = now;
-            System.out.println("[CreateMITE][四季][冰] pass 活着：模式=" + (freeze ? "结冰" : "融冰")
+            System.out.println("[MITE][四季][冰] pass 活着：模式=" + (freeze ? "结冰" : "融冰")
                     + " 半径=" + iceRadiusChunks() + " 区块，每 tick " + ICE_CHUNKS_PER_TICK
                     + " 个区块，只处理 y>=" + ICE_MIN_Y + " 的露天水面 ✓");
         }
         if (now - iceLogTick < 600L) return;             // 30 秒报一次 ✓
         // ★ 哪怕一块没冻也要报 ✓ —— 这样一眼能看出是"没扫到水"还是"扫到了但没改" ✓
-        System.out.println("[CreateMITE][四季][冰] 近 30 秒：扫了 " + iceChunkScanCount + " 个区块 / "
+        System.out.println("[MITE][四季][冰] 近 30 秒：扫了 " + iceChunkScanCount + " 个区块 / "
                 + iceColumnScanCount + " 列有水或冰；冻了 " + iceFreezeCount + " 块、化了 "
                 + iceMeltCount + " 块（模式=" + (freeze ? "结冰" : "融冰") + " ✓）");
         iceFreezeCount = 0;

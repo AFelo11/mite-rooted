@@ -54,7 +54,7 @@ public abstract class ItemInWorldManagerMixin {
         ItemStack held = player.getHeldItemStack();
         if (ToolCompat.canMineBlock(held, block, world.getBlockMetadata(x, y, z))) return;
 
-        System.out.println("[CreateMITE][镐子闸] tryHarvestBlock 拒绝：" + block.getUnlocalizedName()
+        System.out.println("[MITE][镐子闸] tryHarvestBlock 拒绝：" + block.getUnlocalizedName()
                 + " @ " + x + "," + y + "," + z + "（手上不是合格镐类，或等级不够 ✓）");
         cir.setReturnValue(Boolean.FALSE);
     }

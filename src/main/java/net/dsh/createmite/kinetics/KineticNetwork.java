@@ -92,7 +92,7 @@ public final class KineticNetwork {
             if (best.sourceConflict != hasOpposite) {
                 best.sourceConflict = hasOpposite;
                 if (!world.isRemote && hasOpposite) {
-                    System.out.println("[CreateMITE] 动力源方向冲突：网络取最快 "
+                    System.out.println("[MITE] 动力源方向冲突：网络取最快 "
                             + Math.abs(bestSpeed) + " RPM，方向相反的那个源会被反向拖动 @ "
                             + best.xCoord + "," + best.yCoord + "," + best.zCoord);
                 }
@@ -125,7 +125,7 @@ public final class KineticNetwork {
                             float ratio = KineticHelper.diagonalTransfer(cur, n, o[0], o[1], o[2]);
                             String verdict = lit.contains(n) ? "SKIP(lit)"
                                     : (ratio != 0.0F ? "OK ratio=" + ratio : "REJECT");
-                            System.out.println("[CreateMITE][GEAR] " + key
+                            System.out.println("[MITE][GEAR] " + key
                                     + " axis=" + cur.axis() + "/" + n.axis()
                                     + " large=" + cur.isLargeCog() + "/" + n.isLargeCog()
                                     + " off=" + o[0] + "," + o[1] + "," + o[2] + " -> " + verdict);
@@ -187,7 +187,7 @@ public final class KineticNetwork {
         //   那就必须确认"客户端自己算出来的影子网络"是不是同一个结果 ——
         //   渲染用的是客户端那份 ✗，所以只看服务端会漏掉真正的问题 ✓。
         if ((world.getTotalWorldTime() % 40L) == 0L) {
-            StringBuilder sb = new StringBuilder(world.isRemote ? "[CreateMITE][SPEED-C]" : "[CreateMITE][SPEED-S]");
+            StringBuilder sb = new StringBuilder(world.isRemote ? "[MITE][SPEED-C]" : "[MITE][SPEED-S]");
             int shown = 0;
             for (int i = 0; i < members.size() && shown < 16; i++) {
                 KineticTileEntity m = members.get(i);
@@ -215,7 +215,7 @@ public final class KineticNetwork {
                         broken.dropBlockAsItself(new net.minecraft.BlockBreakInfo(
                                 world, m.xCoord, m.yCoord, m.zCoord));
                     }
-                    System.out.println("[CreateMITE] 超速掉落：" + (broken == null ? "?" : broken.getUnlocalizedName())
+                    System.out.println("[MITE] 超速掉落：" + (broken == null ? "?" : broken.getUnlocalizedName())
                             + " @ " + m.xCoord + "," + m.yCoord + "," + m.zCoord
                             + " 转速 " + m.speed + " RPM 超过上限 " + maxSpeed + " → 变成掉落物");
                     world.setBlockToAir(m.xCoord, m.yCoord, m.zCoord);
@@ -247,7 +247,7 @@ public final class KineticNetwork {
         // 只在"状态翻转"时打一行日志 —— 玩家能据此知道是应力把网络压停了，
         // 以及到底差多少（不然只能看着机器不转干着急）。
         if (overStressed != wasOverStressed) {
-            System.out.println("[CreateMITE] 动力网络" + (overStressed ? "应力过载" : "已恢复")
+            System.out.println("[MITE] 动力网络" + (overStressed ? "应力过载" : "已恢复")
                     + "：占用 " + impact + " / 容量 " + capacity
                     + "，共 " + members.size() + " 个动力方块"
                     + (overStressed ? " → 按配置停转（overstress.mode）" : ""));
@@ -310,7 +310,7 @@ public final class KineticNetwork {
     private static void noteWorldless(KineticTileEntity k) {
         if (worldlessLogged) return;
         worldlessLogged = true;
-        System.out.println("[CreateMITE] 跳过了一个还没挂进世界的动力元件 @ "
+        System.out.println("[MITE] 跳过了一个还没挂进世界的动力元件 @ "
                 + k.xCoord + "," + k.yCoord + "," + k.zCoord
                 + "（MITE 懒创建时序，见 KineticTileEntity.hasWorld 的说明）");
     }

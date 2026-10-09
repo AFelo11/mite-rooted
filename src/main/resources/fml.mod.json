@@ -3,9 +3,9 @@
   "id": "createmite",
   "version": "0.1.0",
   "name": "MITE-扎根",
-  "description": "Create 动力与加工体系在 MITE R196 上的原生重制（Phase 1：/P 指令、锌矿、锌与黄铜）",
-  "authors": ["DSH"],
-  "license": "MIT",
+  "description": "把 Create 的动力与加工体系原生重制到 Minecraft 1.6.4 / MITE R196：四季与昼夜、天气、环境与体感温度、食物饮品、动力网络与应力、3x3x3 大熔炉、3x3 营火。",
+  "authors": ["AFelo11"],
+  "license": "GPL-3.0",
   "environment": "*",
   "depends": {
     "fishmodloader": ">=3.4.2"

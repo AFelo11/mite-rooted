@@ -22,8 +22,8 @@ import net.minecraft.World;
  *   ⚠️ 熔炉家族（6 材质 × idle/burning **两套 ID**）放**下一批** ✗
  *   ⚠️ 大熔炉（按热力池动态发热）也放下一批 ✗
  *
- * 【为什么不用老的 TemperatureRelief】
- *   那个是上一代"体温系统"的玩家侧缓解接口 ✗（挂在已停用的 CMBodyTemp 上 ✓）
+ * 【历史】上一代「体温系统」的 TemperatureRelief 接口已随体温系统一起删掉
+ *   那个是上一代"体温系统"的玩家侧缓解接口 ✗（挂在已停用的 CMAmbientFeel 上 ✓）
  *   用户 2026-10-05 明确：**改成"方块自发热"** ⇒ 本类自己一张表 ✓ 不复活那套 ✓
  *
  * 【性能】场上最大半径 = 岩浆的 4 ⇒ 球内约 250 格 ✓ 每 10 tick 算一次 ✓ 可忽略 ✓
@@ -95,7 +95,7 @@ public final class CMHeat {
         reg(Block.ice,       "ice",        "冰",    -6.0F,  3.0F);
         reg(Block.waterMoving, "water",    "水",    -6.0F,  0.0F);   // 半径 0 = 只有自己那一格 ✓
         reg(Block.waterStill,  "water",    "水",    -6.0F,  0.0F);
-        System.out.println("[CreateMITE][HEAT] 方块发热表已建：" + TABLE.size() + " 项，最大半径 " + maxRadius);
+        System.out.println("[MITE][HEAT] 方块发热表已建：" + TABLE.size() + " 项，最大半径 " + maxRadius);
     }
 
     /**

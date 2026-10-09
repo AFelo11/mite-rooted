@@ -21,6 +21,6 @@ public final class CMMaterials {
         if (zinc != null) return;
         zinc = new Material("zinc").setDurability(3.0F);
         brass = new Material("brass").setDurability(4.0F);
-        System.out.println("[CreateMITE] 材料已注册: zinc / brass");
+        System.out.println("[MITE] 材料已注册: zinc / brass");
     }
 }

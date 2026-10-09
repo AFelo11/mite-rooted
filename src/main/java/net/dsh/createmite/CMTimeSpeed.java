@@ -27,7 +27,7 @@ public final class CMTimeSpeed {
     public static void set(float v) {
         multiplier = v;
         accum = 0.0F;
-        System.out.println("[CreateMITE][时间] 流速设为 " + v + " 倍 ✓");
+        System.out.println("[MITE][时间] 流速设为 " + v + " 倍 ✓");
     }
 
     /** 每 tick 调一次（由 `CMSeasons.update` 顺带调 ✓，只在服务端生效 ✓） */

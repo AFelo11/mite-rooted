@@ -2,8 +2,8 @@ package net.dsh.createmite;
 
 import com.google.common.eventbus.Subscribe;
 import net.dsh.createmite.command.HintCommand;
-import net.dsh.createmite.command.PlayerModeCommand;
-import net.dsh.createmite.command.TeleportCommand;
+
+
 import net.dsh.createmite.kinetics.KineticTileEntity;
 import net.dsh.createmite.kinetics.client.KineticRenderer;
 import net.dsh.createmite.kinetics.tile.MillstoneTileEntity;
@@ -25,14 +25,14 @@ import java.util.Map;
  *
  * 进度：
  *   Phase 1   —— 锌矿石（仅地下世界生成）、粗锌/锌锭/黄铜锭、熔炼与合成
- *   Phase 1.1 —— /P 游戏模式、/O 维度传送、作弊锁开关（独立模组）
+ *   Phase 1.1 —— 作弊锁开关（在独立的 mite-cheat-unlock 模组里，本仓库不含）
  *   Phase M1  —— 动力内核（网络传播）+ 传动轴 / 齿轮 / 手摇曲柄 / 石磨
  */
 public class CreateMite implements ModInitializer, ClientModInitializer {
 
     public static final String MOD_ID = "createmite";
     /** ★ 显示名 = MITE-扎根（fml.mod.json ✓）；日志前缀故意保持 ASCII ⇒ 日志好搜 ✓ */
-    public static final String MOD_NAME = "MITE-Rooted";
+    public static final String MOD_NAME = "MITE";
     public static final String MOD_VERSION = "0.2.0";
 
     @Override
@@ -108,8 +108,8 @@ public class CreateMite implements ModInitializer, ClientModInitializer {
 
     @Subscribe
     public void onCommandRegister(CommandRegisterEvent event) {
-        event.register(new PlayerModeCommand());
-        event.register(new TeleportCommand());
+        
+        
         event.register(new HintCommand());
         event.register(new net.dsh.createmite.command.FacingCommand());
         // ★ 结构选择器配套：/T <名称> → 把选区的方块结构导出成文本（给 AI 看玩家搭了什么）
@@ -121,9 +121,9 @@ public class CreateMite implements ModInitializer, ClientModInitializer {
         //   /Y 1|2|3  = 天气：下雨 / 雷暴雨 / 晴天 ✓
         event.register(new net.dsh.createmite.command.TimeSpeedCommand());
         event.register(new net.dsh.createmite.command.WeatherCommand());
-        System.out.println("[CreateMITE] command registered: /F (facing)");
-        System.out.println("[" + MOD_NAME + "] 指令已注册: /P (游戏模式), /O (维度传送), /cmhint (提示开关), /cmf (朝向信息), /T (导出结构)");
-        System.out.println("[CreateMITE] 提示开关 = 键位 V（按键设置里的名称：机械动力提示，默认开启）");
+        System.out.println("[MITE] command registered: /F (facing)");
+        System.out.println("[" + MOD_NAME + "] 指令已注册: /cmhint (提示开关), /cmf (朝向信息), /T (导出结构)");
+        System.out.println("[MITE] 提示开关 = 键位 V（按键设置里的名称：提示，默认开启）");
     }
 
     @Subscribe
@@ -219,8 +219,10 @@ public class CreateMite implements ModInitializer, ClientModInitializer {
         translation.put("tile.obsidian_wrapped_shaft.name", english ? "Obsidian Cased Shaft" : "黑曜石熔炉传动杆");
         translation.put("tile.netherrack_wrapped_shaft.name", english ? "Netherrack Cased Shaft" : "地狱岩熔炉传动杆");
         translation.put("tile.cobblestone_wrapped_shaft.name", english ? "Cobblestone Cased Shaft" : "圆石熔炉传动杆");
-        // 按键绑定显示名（按键设置菜单里那一行）—— 用户指定：机械动力提示 ✓
-        translation.put("key.createmite.hints", english ? "Create: Hints" : "机械动力提示");
+        // 按键绑定显示名（按键设置菜单里那一行）—— 用户 2026-10-09 改定：提示 ✓
+        translation.put("key.createmite.hints", english ? "Hints" : "提示");
+        // 玩家面板新增：体感温度（2026-10-09 用户要求，纯数字显示 ✓）
+        translation.put("gui.createmite.status.feel_temperature", english ? "Perceived Temp" : "体感温度");
         // ★ 2026-09-30 新增：I 键界面（GuiPlayerStatus）—— 用户定名：**玩家面板** ✓
         //   （用户原话：「这个键位不叫机械动力状态面板，它叫：玩家面板」）
         //   ⚠️ 语言**键名** key.createmite.status 保持不变 ✗ —— options.txt 里按键是按键名+键码存的，

@@ -141,6 +141,12 @@ public class ItemBowlDrink extends CMItem implements net.minecraft.IDamageableIt
         if (player == null || world == null) return;
         if (player.onServer() && !player.inCreativeMode()) {
             CMFood.onEaten(player, this);                       // ★ 进食物体感系统 ✓
+            // ★ 2026-10-09 必需脂肪：碗类饮料走的是我们自己的路径（没有 setFoodValue ✗）
+            //   ⇒ 这里主动喊一次 MITE 的养分结算，否则开了开关也拿不到蛋白质/脂肪 ✓
+            try {
+                net.minecraft.ServerPlayer sp = net.dsh.createmite.CMFats.serverPlayerOf(player);
+                if (sp != null) sp.addNutrients(this);
+            } catch (Throwable ignored) { }
             Item empty = getItemProducedOnItemUseFinish();
             player.convertOneOfHeldItem(empty == null ? null : new ItemStack(empty));   // ★ 返还 ✓
             try {

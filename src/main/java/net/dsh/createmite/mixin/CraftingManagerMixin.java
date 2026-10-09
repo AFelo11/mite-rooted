@@ -85,11 +85,11 @@ public abstract class CraftingManagerMixin {
                 dye.recipes = filtered;
                 dye.num_recipes = kept;
                 dye.setLowestCraftingDifficultyToProduce(dyeDifficulty);
-                System.out.println("[CreateMITE] 骨粉：从 Item.recipes 里摘掉 " + (filtered.length - kept) + " 条（骨头→骨粉）");
+                System.out.println("[MITE] 骨粉：从 Item.recipes 里摘掉 " + (filtered.length - kept) + " 条（骨头→骨粉）");
             }
         }
 
-        System.out.println("[CreateMITE] 已删除 MITE 自带的配方 " + removed
+        System.out.println("[MITE] 已删除 MITE 自带的配方 " + removed
                 + " 条：面粉（小麦×3→面粉）+ 骨粉（骨头→骨粉×3）—— 两者都改成只能靠石磨磨 ✓");
 
         // ================= 最低工作台要求（2026-09-28 用户要求）=================
@@ -120,7 +120,7 @@ public abstract class CraftingManagerMixin {
             recipe.setMaterialToCheckToolBenchHardnessAgainst(need);
             gated++;
         }
-        System.out.println("[CreateMITE] 最低工作台要求已设置 " + gated + " 条配方："
+        System.out.println("[MITE] 最低工作台要求已设置 " + gated + " 条配方："
                 + "熔炉六件套按材质（圆石组=铜、黑曜石组=铁、地狱岩组=秘银）、"
                 + "粉碎轮=秘银、其余本模组配方=铁 ✓（MITE 机制：更高级的工作台照样能合成 ✓）");
     }

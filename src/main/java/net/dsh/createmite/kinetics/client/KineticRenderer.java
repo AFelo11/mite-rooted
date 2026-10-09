@@ -92,7 +92,7 @@ public class KineticRenderer extends TileEntitySpecialRenderer {
      */
     static {
         if (LAYER_TEX.length != CreateModels.LAYER_COUNT) {
-            System.out.println("[CreateMITE][严重] LAYER_TEX(" + LAYER_TEX.length
+            System.out.println("[MITE][严重] LAYER_TEX(" + LAYER_TEX.length
                     + ") 与 CreateModels.LAYER_NAMES(" + CreateModels.LAYER_COUNT + ") 数量不一致！"
                     + " 新增贴图层必须同时改三处：CreateModels.LAYER_NAMES / KineticRenderer.LAYER_TEX"
                     + " / tools/OfflineRender.LAYERS");

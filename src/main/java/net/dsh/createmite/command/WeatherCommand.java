@@ -82,7 +82,7 @@ public class WeatherCommand extends CommandBase {
             net.dsh.createmite.CMWeather.set(v == 1 ? 1 : (v == 2 ? 2 : 3));
             sender.sendChatToPlayer(msg("已调用原版天气指令：/weather " + arg + " " + secs + " ✓"));
         } catch (Throwable t) {
-            System.out.println("[CreateMITE] /Y 出错: " + t);
+            System.out.println("[MITE] /Y 出错: " + t);
             sender.sendChatToPlayer(msg("/Y 出错: " + t));
         }
     }

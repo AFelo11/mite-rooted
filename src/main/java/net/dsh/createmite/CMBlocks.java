@@ -189,10 +189,10 @@ public final class CMBlocks {
             registerItemBlock(blockCampfirePart, 400.0F);
             // ★ 不给创造栏（用户要求：只能靠搭建获得 ✓）
             try { blockCampfire.setCreativeTab(null); blockCampfireLit.setCreativeTab(null); blockCampfirePart.setCreativeTab(null); } catch (Throwable ignored) { }
-            System.out.println("[CreateMITE] CAMPFIRE ok core=" + blockCampfire.blockID
+            System.out.println("[MITE] CAMPFIRE ok core=" + blockCampfire.blockID
                     + " coreLit=" + blockCampfireLit.blockID + " part=" + blockCampfirePart.blockID);
         } catch (Throwable t) {
-            System.out.println("[CreateMITE] CAMPFIRE 建方块失败: " + t);
+            System.out.println("[MITE] CAMPFIRE 建方块失败: " + t);
         }
     }
 
@@ -329,7 +329,7 @@ public final class CMBlocks {
         // ---- 大齿轮的占位方块（正十字挡位：主体 + 上下左右 4 格） ----
         registerLargeCogwheelPlaceholder();
 
-        System.out.println("[CreateMITE] 方块已注册: 锌矿石=" + ID_ZINC_ORE
+        System.out.println("[MITE] 方块已注册: 锌矿石=" + ID_ZINC_ORE
                 + " 传动轴=" + ID_SHAFT + " 齿轮=" + ID_COGWHEEL
                 + " 手摇曲柄=" + ID_HAND_CRANK + " 石磨=" + ID_MILLSTONE
                 + " 大齿轮=" + ID_LARGE_COGWHEEL + " 十字齿轮箱=" + ID_GEARBOX
@@ -338,7 +338,7 @@ public final class CMBlocks {
                 + (blockLargeWaterWheelPlaceholder != null ? "（已就绪）" : "（★ 注册失败，3x3 编队停用）")
                 + " 大齿轮=" + ID_LARGE_COGWHEEL + "/大齿轮占位=" + ID_LARGE_COGWHEEL_PLACEHOLDER
                 + (blockLargeCogwheelPlaceholder != null ? "（已就绪）" : "（★ 注册失败，正十字挡位停用）"));
-        System.out.println("[CreateMITE] 熔炉结构方块已注册: 核心=" + ID_OBSIDIAN_FURNACE_CORE + "/"
+        System.out.println("[MITE] 熔炉结构方块已注册: 核心=" + ID_OBSIDIAN_FURNACE_CORE + "/"
                 + ID_NETHERRACK_FURNACE_CORE + "/" + ID_COBBLESTONE_FURNACE_CORE
                 + " 包裹传动杆=" + ID_OBSIDIAN_WRAPPED_SHAFT + "/" + ID_NETHERRACK_WRAPPED_SHAFT
                 + "/" + ID_COBBLESTONE_WRAPPED_SHAFT
@@ -347,7 +347,7 @@ public final class CMBlocks {
                 + "（MITE 等级表: 木0 燧石1 铜银金2 铁3 秘银钻石4 艾德曼5）");
         // ★ 2026-09-29：把六个方块**实际生效**的挖掘等级读回来打一遍 ——
         //   MITE 参考导出只覆盖 id < 256，我们的方块查不到，只能自己打日志核对 ✓
-        System.out.println("[CreateMITE] 熔炉六件套挖掘等级实测: 黑曜石核心=" + levelOf(blockObsidianFurnaceCore)
+        System.out.println("[MITE] 熔炉六件套挖掘等级实测: 黑曜石核心=" + levelOf(blockObsidianFurnaceCore)
                 + " 下界岩核心=" + levelOf(blockNetherrackFurnaceCore)
                 + " 圆石核心=" + levelOf(blockCobblestoneFurnaceCore)
                 + " | 黑曜石传动杆=" + levelOf(wrappedShaftObsidian)
@@ -367,7 +367,7 @@ public final class CMBlocks {
     private static void registerLargeWaterWheelPlaceholder() {
         if (net.minecraft.Block.blocksList[ID_LARGE_WATER_WHEEL_PLACEHOLDER] != null
                 || Item.itemsList[ID_LARGE_WATER_WHEEL_PLACEHOLDER] != null) {
-            System.out.println("[CreateMITE] ★ id " + ID_LARGE_WATER_WHEEL_PLACEHOLDER
+            System.out.println("[MITE] ★ id " + ID_LARGE_WATER_WHEEL_PLACEHOLDER
                     + " 已被占用，大型水车的 3x3 占位格停用（其余功能不受影响）");
             return;
         }
@@ -389,7 +389,7 @@ public final class CMBlocks {
     private static void registerLargeCogwheelPlaceholder() {
         if (net.minecraft.Block.blocksList[ID_LARGE_COGWHEEL_PLACEHOLDER] != null
                 || Item.itemsList[ID_LARGE_COGWHEEL_PLACEHOLDER] != null) {
-            System.out.println("[CreateMITE] ★ id " + ID_LARGE_COGWHEEL_PLACEHOLDER
+            System.out.println("[MITE] ★ id " + ID_LARGE_COGWHEEL_PLACEHOLDER
                     + " 已被占用，大齿轮的 4 个正交占位格停用（其余功能不受影响）");
             return;
         }
@@ -408,7 +408,7 @@ public final class CMBlocks {
     private static net.dsh.createmite.kinetics.block.BlockCMStorage registerStorageBlock(
             int id, String unlocalizedName, String textureName, float difficulty) {
         if (net.minecraft.Block.blocksList[id] != null || Item.itemsList[id] != null) {
-            System.out.println("[CreateMITE] ★ 方块 id " + id + "（" + unlocalizedName
+            System.out.println("[MITE] ★ 方块 id " + id + "（" + unlocalizedName
                     + "）已被占用 → 这一个块停用，其余照常");
             return null;
         }
@@ -430,7 +430,7 @@ public final class CMBlocks {
             int id, String unlocalizedName, String textureName, net.minecraft.Material material,
             float hardness, float resistance, int minHarvestLevel, int materialId, float difficulty) {
         if (net.minecraft.Block.blocksList[id] != null || Item.itemsList[id] != null) {
-            System.out.println("[CreateMITE] ★ 方块 id " + id + "（" + unlocalizedName
+            System.out.println("[MITE] ★ 方块 id " + id + "（" + unlocalizedName
                     + "）已被占用 → 这一个块停用，其余照常");
             return null;
         }
@@ -445,7 +445,7 @@ public final class CMBlocks {
             int id, int kind, String unlocalizedName, net.minecraft.Material material,
             int minHarvestLevel, int shellLayer, float difficulty) {
         if (net.minecraft.Block.blocksList[id] != null || Item.itemsList[id] != null) {
-            System.out.println("[CreateMITE] ★ 方块 id " + id + "（" + unlocalizedName
+            System.out.println("[MITE] ★ 方块 id " + id + "（" + unlocalizedName
                     + "）已被占用 → 这一个块停用，其余照常");
             return null;
         }
@@ -466,7 +466,7 @@ public final class CMBlocks {
             int id, String name, net.minecraft.Material material, int minHarvestLevel,
             float hardness, float resistance, float difficulty) {
         if (net.minecraft.Block.blocksList[id] != null || Item.itemsList[id] != null) {
-            System.out.println("[CreateMITE] ★ 方块 id " + id + "（" + name + "）已被占用 → 这一个块停用，其余照常");
+            System.out.println("[MITE] ★ 方块 id " + id + "（" + name + "）已被占用 → 这一个块停用，其余照常");
             return null;
         }
         net.dsh.createmite.block.BlockMaterialShaft b = new net.dsh.createmite.block.BlockMaterialShaft(
@@ -485,7 +485,7 @@ public final class CMBlocks {
         net.minecraft.Block[] shafts = {shaftCopper, shaftSilver, shaftGold, shaftIron, shaftMithril};
         String[] cn = {"铜", "银", "金", "铁", "秘银"};
         StringBuilder sb = new StringBuilder(
-                "[CreateMITE] 传动杆工作台闸门（工作台材质 durability ≥ 产物材质 durability）: ");
+                "[MITE] 传动杆工作台闸门（工作台材质 durability ≥ 产物材质 durability）: ");
         for (int i = 0; i < shafts.length; i++) {
             net.minecraft.Block b = shafts[i];
             if (b == null) {

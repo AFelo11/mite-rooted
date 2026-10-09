@@ -33,7 +33,7 @@ public abstract class BiomeDecoratorMixin {
         if (world == null || !world.isUnderworld()) return;
         if (!createmite$logged) {
             createmite$logged = true;
-            System.out.println("[CreateMITE] 地下世界锌矿生成已生效（10 脉 x 6）");
+            System.out.println("[MITE] 地下世界锌矿生成已生效（10 脉 x 6）");
         }
         this.genMinable(10, new WorldGenMinable(CMBlocks.oreZinc.blockID, 6));
     }

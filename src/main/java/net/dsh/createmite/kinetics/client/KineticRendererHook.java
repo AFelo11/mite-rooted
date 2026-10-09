@@ -52,9 +52,9 @@ public final class KineticRendererHook {
                 cf.setTileEntityRenderer(rendererInstance);
                 map.put(net.dsh.createmite.campfire.TileCampfire.class, cf);
                 // ⚠️ 这里每帧都会被调到 ⇒ 只在真的新注册时打日志 ✓（否则一天刷几万行 ✗）
-                if (cfNew) System.out.println("[CreateMITE] 营火渲染器已注册 ✓");
+                if (cfNew) System.out.println("[MITE] 营火渲染器已注册 ✓");
             } catch (Throwable t) {
-                System.out.println("[CreateMITE] 营火渲染器注册失败: " + t);
+                System.out.println("[MITE] 营火渲染器注册失败: " + t);
             }
 
             // ★ 大熔炉整机渲染器要先检查/补上：下面那个"已注册就 return"会让它永远轮不到 ✗
@@ -92,9 +92,9 @@ public final class KineticRendererHook {
             ours.setTileEntityRenderer(rendererInstance);   // ★ 关键：回填反向引用，避免 bindTexture NPE
             map.put(KineticTileEntity.class, ours);
             map.put(MillstoneTileEntity.class, ours);
-            System.out.println("[CreateMITE] 动力渲染器已注册（反射注入），当前渲染器表大小 " + map.size());
+            System.out.println("[MITE] 动力渲染器已注册（反射注入），当前渲染器表大小 " + map.size());
         } catch (Throwable t) {
-            System.out.println("[CreateMITE] 渲染器注册失败: " + t);
+            System.out.println("[MITE] 渲染器注册失败: " + t);
         }
     }
 }

@@ -175,7 +175,7 @@ public class ItemHandWarmer extends CMItem implements net.minecraft.IDamageableI
         try {                                      // 很轻的一声"嘶" ✓ 当作"点着了"的反馈 ✓
             player.worldObj.playSoundAtEntity(player, "random.fizz", 0.35F, 1.5F);
         } catch (Throwable ignored) { }
-        System.out.println("[CreateMITE][WARM] used id=" + player.entityId
+        System.out.println("[MITE][WARM] used id=" + player.entityId
                 + " left=" + Math.max(0, uses) + " until=" + (now + durationTicks()) + " now=" + now
                 + " heat=" + heat() + " min=" + (durationTicks() / 1200));
         return true;

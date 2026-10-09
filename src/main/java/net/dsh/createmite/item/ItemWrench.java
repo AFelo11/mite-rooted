@@ -109,7 +109,7 @@ public class ItemWrench extends Item {
                     //   用 toString() 打出原枚举名（UP/NORTH/…），再附一个中文，避免歧义。
                     String fn = String.valueOf(rc.face_hit);
                     // 也写一行日志（客户端 stdout 会进 latest.log），这样我不用你手打枚举名就能读到
-                    System.out.println("[CreateMITE][WRENCH] block=(" + x + "," + y + "," + z + ")"
+                    System.out.println("[MITE][WRENCH] block=(" + x + "," + y + "," + z + ")"
                             + " face=" + fn
                             + " offset=(" + String.format("%.3f", rc.block_hit_offset_x)
                             + "," + String.format("%.3f", rc.block_hit_offset_y)

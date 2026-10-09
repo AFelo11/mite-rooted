@@ -30,11 +30,13 @@
     "SeasonsSnowMeltMixin",
     "SeasonsSnowFlagMixin",
     "SeasonsWeatherMixin",
-    "BodyTempPlayerMixin",
+    "FeelTickMixin",
+    "FatsMoveMixin",
+    "FatsStarveMixin",
     "FeelRegenMixin",
     "FeelEfficiencyMixin",
     "FoodValueMixin",
     "BodyTempOverlayMixin",
-    "BodyTempHungerMixin"
+    "FeelHungerMixin"
   ]
 }

@@ -21,7 +21,7 @@ public final class CMCampfireBridge {
             if (!(o instanceof net.minecraft.ServerPlayer)) return;
             net.dsh.createmite.campfire.BlockCampfire.useOnServer(sw, x, y, z, (net.minecraft.ServerPlayer) o);
         } catch (Throwable t) {
-            System.out.println("[CreateMITE][CAMPFIRE] 转服务端失败: " + t);
+            System.out.println("[MITE][CAMPFIRE] 转服务端失败: " + t);
         }
     }
 }

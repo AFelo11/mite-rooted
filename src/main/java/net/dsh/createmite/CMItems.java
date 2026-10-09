@@ -113,7 +113,7 @@ public final class CMItems {
             int emptyId, int becomesId, int coolMinutes) {
         if (id <= 0 || id >= net.minecraft.Item.itemsList.length) return null;
         if (net.minecraft.Item.itemsList[id] != null) {
-            System.out.println("[CreateMITE] ★ 物品 id " + id + "（" + unloc + "）已被占用 → 这一件停用");
+            System.out.println("[MITE] ★ 物品 id " + id + "（" + unloc + "）已被占用 → 这一件停用");
             return null;
         }
         return new net.dsh.createmite.item.ItemBowlDrink(
@@ -126,7 +126,7 @@ public final class CMItems {
             net.minecraft.EnumItemInUseAction action, int emptyId, int becomesId, int coolMinutes) {
         if (id <= 0 || id >= net.minecraft.Item.itemsList.length) return null;
         if (net.minecraft.Item.itemsList[id] != null) {
-            System.out.println("[CreateMITE] ★ 物品 id " + id + "（" + unloc + "）已被占用 → 这一件停用");
+            System.out.println("[MITE] ★ 物品 id " + id + "（" + unloc + "）已被占用 → 这一件停用");
             return null;
         }
         return new net.dsh.createmite.item.ItemCMFood(
@@ -137,7 +137,7 @@ public final class CMItems {
     private static CMItem newItemSafely(int id, net.minecraft.Material material,
                                         String unlocalizedName, String textureName, float difficulty) {
         if (net.minecraft.Item.itemsList[id] != null) {
-            System.out.println("[CreateMITE] ★ 物品 id " + id + "（" + unlocalizedName
+            System.out.println("[MITE] ★ 物品 id " + id + "（" + unlocalizedName
                     + "）已被占用 → 这一件停用，其余照常");
             return null;
         }
@@ -192,7 +192,7 @@ public final class CMItems {
 
         if (rawZinc != null) rawZinc.setMaxStackSize(ORE_STACK_SIZE);   // 粗锌也是 8 ✓
 
-        System.out.println("[CreateMITE] 矿石/粗锌堆叠上限已设为 " + ORE_STACK_SIZE
+        System.out.println("[MITE] 矿石/粗锌堆叠上限已设为 " + ORE_STACK_SIZE
                 + "（MITE 自带 " + done + " 种 + 锌矿石 + 粗锌）");
     }
 
@@ -216,7 +216,7 @@ public final class CMItems {
                 n++;
             }
         }
-        System.out.println("[CreateMITE] 粉碎矿物堆叠上限已设为 " + CRUSHED_STACK_SIZE + "（" + n + " 种）");
+        System.out.println("[MITE] 粉碎矿物堆叠上限已设为 " + CRUSHED_STACK_SIZE + "（" + n + " 种）");
     }
 
     private static String idOrNone(CMItem item) {
@@ -239,7 +239,7 @@ public final class CMItems {
         //   依赖它的配方在 CMRecipes 里会跳过并打日志，其余内容照常 ✓。
         int alloyId = BASE_ARG + 5;
         if (net.minecraft.Item.itemsList[alloyId] != null) {
-            System.out.println("[CreateMITE] ★ 物品 id " + alloyId
+            System.out.println("[MITE] ★ 物品 id " + alloyId
                     + " 已被占用，安山合金停用（依赖它的传动轴/手摇曲柄配方会被跳过）");
         } else {
             andesiteAlloy = new CMItem(alloyId, net.minecraft.Material.iron,
@@ -250,7 +250,7 @@ public final class CMItems {
         //   锌锭 ×1 --无序--> 锌粒 ×9 ；锌粒 ×9（3×3）--> 锌锭 ×1 ✓
         int nuggetId = BASE_ARG + 6;
         if (net.minecraft.Item.itemsList[nuggetId] != null) {
-            System.out.println("[CreateMITE] ★ 物品 id " + nuggetId
+            System.out.println("[MITE] ★ 物品 id " + nuggetId
                     + " 已被占用，锌粒停用（锌粒/拼回锌锭两条配方会被跳过）");
         } else {
             zincNugget = new CMItem(nuggetId, CMMaterials.zinc, "zincNugget", "zinc_nugget", 30.0F);
@@ -259,7 +259,7 @@ public final class CMItems {
         // ★ 2026-09-28：黄铜粒（id 2363 = BASE_ARG + 7），同样带 id 空闲检查 ✓
         int brassNuggetId = BASE_ARG + 7;
         if (net.minecraft.Item.itemsList[brassNuggetId] != null) {
-            System.out.println("[CreateMITE] ★ 物品 id " + brassNuggetId
+            System.out.println("[MITE] ★ 物品 id " + brassNuggetId
                     + " 已被占用，黄铜粒停用（相关两条配方会被跳过）");
         } else {
             brassNugget = new CMItem(brassNuggetId, CMMaterials.brass, "brassNugget", "brass_nugget", 40.0F);
@@ -279,12 +279,12 @@ public final class CMItems {
                 "crushedMithril", "crushed_raw_mithril", 150.0F);
         // ---- 结构选择器（开发工具；物品 id 2370 → 构造参数 = 2370 - 256 ✓）----
         if (net.minecraft.Item.itemsList[ID_STRUCTURE_WAND] != null) {
-            System.out.println("[CreateMITE] ★ 物品 id " + ID_STRUCTURE_WAND
+            System.out.println("[MITE] ★ 物品 id " + ID_STRUCTURE_WAND
                     + "（结构选择器）已被占用 → 这一件停用，其余照常");
         } else {
             structureWand = new net.dsh.createmite.item.ItemStructureWand(
                     ID_STRUCTURE_WAND - 256, "structure_wand");
-            System.out.println("[CreateMITE] 结构选择器已注册: id=" + ID_STRUCTURE_WAND
+            System.out.println("[MITE] 结构选择器已注册: id=" + ID_STRUCTURE_WAND
                     + "（左键=A，右键=B，/T <名称> 导出；无配方，创造栏拿）");
         }
 
@@ -295,7 +295,7 @@ public final class CMItems {
         //   合成：空圆石空 ／ 圆石空圆石 ／ 空圆石空 ⇒ 出 2 个冷暖手石 ✓（所有工作台 ✓）
         //   冷暖手石 --熔炉烤--> 暖手石 ✓；暖手石可用两次、每次 3 分钟 +3℃ ✓ 用完变回冷暖手石 ✓
         if (net.minecraft.Item.itemsList[ID_HAND_WARMER] != null) {
-            System.out.println("[CreateMITE] ★ 物品 id " + ID_HAND_WARMER + "（暖手石）已被占用 → 这一件停用");
+            System.out.println("[MITE] ★ 物品 id " + ID_HAND_WARMER + "（暖手石）已被占用 → 这一件停用");
         } else {
             handWarmer = new net.dsh.createmite.item.ItemHandWarmer(
                     ID_HAND_WARMER - 256, true, "handWarmer", "hand_warmer");
@@ -304,7 +304,7 @@ public final class CMItems {
             handWarmer.setMaxDamage(net.dsh.createmite.item.ItemHandWarmer.barMax());
         }
         if (net.minecraft.Item.itemsList[ID_HAND_WARMER_COLD] != null) {
-            System.out.println("[CreateMITE] ★ 物品 id " + ID_HAND_WARMER_COLD + "（冷暖手石）已被占用 → 这一件停用");
+            System.out.println("[MITE] ★ 物品 id " + ID_HAND_WARMER_COLD + "（冷暖手石）已被占用 → 这一件停用");
         } else {
             handWarmerCold = new net.dsh.createmite.item.ItemHandWarmer(
                     ID_HAND_WARMER_COLD - 256, false, "handWarmerCold", "hand_warmer_cold");
@@ -333,9 +333,9 @@ public final class CMItems {
                     net.minecraft.Material.milk, ID_EMPTY_BUCKETS[i], 0, 0);
         }
         // ASCII 标签行（中文在日志里是花的，只有 ASCII 搜得到）
-        System.out.println("[CreateMITE] COOL_CHAIN hot=" + hotMin + "min -> warm="
+        System.out.println("[MITE] COOL_CHAIN hot=" + hotMin + "min -> warm="
                 + warmMin + "min -> water_bowl(" + ID_WATER_BOWL + ")");
-        System.out.println("[CreateMITE] 饮料已注册：热水碗=" + idOrNone(hotWaterBowl)
+        System.out.println("[MITE] 饮料已注册：热水碗=" + idOrNone(hotWaterBowl)
                 + " 温水碗=" + idOrNone(warmWaterBowl) + " 冰水碗=" + idOrNone(iceWaterBowl)
                 + " 热牛奶碗=" + idOrNone(hotMilkBowl)
                 + " 热奶桶=" + idOrNone(hotMilkBucket[0]) + "~" + idOrNone(hotMilkBucket[6]));
@@ -378,14 +378,14 @@ public final class CMItems {
                     net.minecraft.Material.pie, ID_APPLE_PIE_RAW);
         }
         // ★ ASCII 标签行（日志里中文是花的 ✗ 只有 ASCII 搜得到 ✓）
-        System.out.println("[CreateMITE] PIE_CHAIN raw=" + idOrNone(applePieRaw) + " hot=" + idOrNone(hotApplePie)
+        System.out.println("[MITE] PIE_CHAIN raw=" + idOrNone(applePieRaw) + " hot=" + idOrNone(hotApplePie)
                 + " cold=" + idOrNone(applePie) + " | CHOC_MILK cold=" + idOrNone(chocolateMilkBowl)
                 + " hot=" + idOrNone(hotChocolateMilkBowl) + " | hot_food_min=" + hotFoodMin);
 
         // ★ 所有"粉碎矿物"堆叠上限 = **16**（用户 2026-09-28 要求）✓
         applyCrushedStackSize();
 
-        System.out.println("[CreateMITE] 物品已注册: 粗锌=" + rawZinc.itemID
+        System.out.println("[MITE] 物品已注册: 粗锌=" + rawZinc.itemID
                 + " 锌锭=" + ingotZinc.itemID + " 黄铜锭=" + ingotBrass.itemID
                 + " 粉碎粗锌=" + crushedRawZinc.itemID
                 + " 扳手=" + wrench.itemID

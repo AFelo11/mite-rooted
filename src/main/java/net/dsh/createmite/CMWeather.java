@@ -26,7 +26,7 @@ public final class CMWeather {
 
     public static void set(int m) {
         mode = m;
-        System.out.println("[CreateMITE][天气] 强制模式 = " + m + "（0 不强制 / 1 雨 / 2 雷雨 / 3 晴）✓");
+        System.out.println("[MITE][天气] 强制模式 = " + m + "（0 不强制 / 1 雨 / 2 雷雨 / 3 晴）✓");
     }
 
     // ---- 诊断（排查"雨雪粒子没了" ✓ 2026-09-30）----
@@ -79,6 +79,6 @@ public final class CMWeather {
         } catch (Throwable t) {
             s = "诊断出错: " + t;
         }
-        System.out.println("[CreateMITE][天气] " + s);
+        System.out.println("[MITE][天气] " + s);
     }
 }

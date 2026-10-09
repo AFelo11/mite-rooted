@@ -59,7 +59,7 @@ public class FacingCommand extends CommandBase {
             sender.sendChatToPlayer(msg("朝向: " + dir
                     + "  (yaw " + (int) norm + ", pitch " + (int) player.rotationPitch + ")"));
         } catch (Throwable t) {
-            System.out.println("[CreateMITE] /F 出错: " + t);
+            System.out.println("[MITE] /F 出错: " + t);
             sender.sendChatToPlayer(msg("/F 出错: " + t));
         }
     }

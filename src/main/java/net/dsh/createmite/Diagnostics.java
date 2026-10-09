@@ -43,7 +43,7 @@ public final class Diagnostics {
                     }
                     if (exists) ok++;
                 }
-                System.out.println("[CreateMITE][诊断] 贴图文件可达 " + ok + "/" + PATHS.length);
+                System.out.println("[MITE][诊断] 贴图文件可达 " + ok + "/" + PATHS.length);
                 dumpBlock("对照 原版石头", Block.stone);
                 dumpBlock("锌矿石", CMBlocks.oreZinc);
                 dumpBlock("传动轴", CMBlocks.blockShaft);
@@ -54,7 +54,7 @@ public final class Diagnostics {
                 dumpItem("对照 粗锌", CMItems.rawZinc);
                 dumpItem("扳手", CMItems.wrench);
                 dumpStack("背包 扳手", new ItemStack(CMItems.wrench, 1, 0));
-                System.out.println("[CreateMITE][诊断] 扳手 精灵号="
+                System.out.println("[MITE][诊断] 扳手 精灵号="
                         + (CMItems.wrench == null ? "?" : String.valueOf(CMItems.wrench.getSpriteNumber()))
                         + " 是ItemBlock=" + (((net.minecraft.Item) CMItems.wrench) instanceof net.minecraft.ItemBlock));
                 dumpStack("背包 传动轴", new ItemStack(CMBlocks.blockShaft, 1, 0));
@@ -68,7 +68,7 @@ public final class Diagnostics {
     }
 
     private static void dumpBlock(String label, Block block) {
-        if (block == null) { System.out.println("[CreateMITE][诊断] " + label + " = null"); return; }
+        if (block == null) { System.out.println("[MITE][诊断] " + label + " = null"); return; }
         Icon icon = block.getIcon(0, 0);
         boolean cube = false;
         boolean solid = false;
@@ -77,7 +77,7 @@ public final class Diagnostics {
             solid = block.isSolid(0);
         } catch (Throwable ignored) {
         }
-        System.out.println("[CreateMITE][诊断] 方块 " + label + " id=" + block.blockID
+        System.out.println("[MITE][诊断] 方块 " + label + " id=" + block.blockID
                 + " 图标=" + (icon == null ? "null" : icon.getIconName())
                 + " 整方块=" + cube + " 固体=" + solid);
     }
@@ -85,7 +85,7 @@ public final class Diagnostics {
     private static void dumpItem(String label, Item item) {
         if (item == null) return;
         Icon icon = item.getIconFromSubtype(0);
-        System.out.println("[CreateMITE][诊断] 物品 " + label + " id=" + item.itemID
+        System.out.println("[MITE][诊断] 物品 " + label + " id=" + item.itemID
                 + " 图标=" + (icon == null ? "null" : icon.getIconName()));
     }
 
@@ -93,10 +93,10 @@ public final class Diagnostics {
         try {
             Item item = stack.getItem();
             Icon icon = item == null ? null : item.getIconIndex(stack);
-            System.out.println("[CreateMITE][诊断] " + label + " -> "
+            System.out.println("[MITE][诊断] " + label + " -> "
                     + (icon == null ? "null" : icon.getIconName()));
         } catch (Throwable t) {
-            System.out.println("[CreateMITE][诊断] " + label + " 异常 " + t);
+            System.out.println("[MITE][诊断] " + label + " 异常 " + t);
         }
     }
 }

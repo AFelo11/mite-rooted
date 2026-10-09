@@ -58,12 +58,12 @@ public final class CreateMeshes {
         try {
             raw = CreateMeshes.class.getResourceAsStream("/assets/createmite/meshes/" + name + ".mesh");
             if (raw == null) {
-                System.out.println("[CreateMITE] 找不到网格资源 " + name + ".mesh");
+                System.out.println("[MITE] 找不到网格资源 " + name + ".mesh");
                 return null;
             }
             DataInputStream in = new DataInputStream(new BufferedInputStream(raw));
             if (in.readInt() != 0x4D455348) {
-                System.out.println("[CreateMITE] 网格 " + name + " magic 不对");
+                System.out.println("[MITE] 网格 " + name + " magic 不对");
                 return null;
             }
             int triCount = in.readInt();
@@ -86,7 +86,7 @@ public final class CreateMeshes {
             // 比不缩还难看。所以恢复成 OBJ 原样。要做 3x3 得另想办法（见交接文档）。
             return new Mesh(verts, layers);
         } catch (Throwable t) {
-            System.out.println("[CreateMITE] 网格 " + name + " 加载失败: " + t);
+            System.out.println("[MITE] 网格 " + name + " 加载失败: " + t);
             return null;
         } finally {
             try { if (raw != null) raw.close(); } catch (Throwable ignore) { }
@@ -109,7 +109,7 @@ public final class CreateMeshes {
         for (int i = 0; i < CreateModels.LAYER_NAMES.length; i++) {
             if (CreateModels.LAYER_NAMES[i].equals(n)) return i;
         }
-        System.out.println("[CreateMITE] 网格 " + meshName + " 里的贴图 " + tex + "（规范化后 " + n
+        System.out.println("[MITE] 网格 " + meshName + " 里的贴图 " + tex + "（规范化后 " + n
                 + "）不在 LAYER_NAMES 里，该三角形会被跳过");
         return -1;
     }

@@ -390,7 +390,7 @@ public class KineticTileEntity extends TileEntity {
         this.worldObj.setBlockMetadataWithNotify(this.xCoord, this.yCoord, this.zCoord, want, 2);
         this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
         boolean closed = (want & bit) != 0;
-        System.out.println("[CreateMITE][SHAFT-END] " + this.xCoord + "," + this.yCoord + "," + this.zCoord
+        System.out.println("[MITE][SHAFT-END] " + this.xCoord + "," + this.yCoord + "," + this.zCoord
                 + " dir=" + dir + " axis=" + this.axis() + " bit=" + bit
                 + " meta " + meta + " -> " + want + " closed=" + closed);
         return closed;
@@ -438,7 +438,7 @@ public class KineticTileEntity extends TileEntity {
             //   用户实测"闪一帧黄铜又变回安山""齿轮只有安山" ✓ = 客户端根本没收到这个位 ✓。
             //   markBlockForUpdate 会强制把该格重新下发（含 metadata）✓。
             this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
-            System.out.println("[CreateMITE][ENCASE] server set meta=" + want + " @ "
+            System.out.println("[MITE][ENCASE] server set meta=" + want + " @ "
                     + this.xCoord + "," + this.yCoord + "," + this.zCoord
                     + " brass=" + brass + " encased=" + encased);
         }
@@ -771,7 +771,7 @@ public class KineticTileEntity extends TileEntity {
      */
     private String wheelDebugLine(float t) {
         StringBuilder sb = new StringBuilder(256);
-        sb.append("[CreateMITE][WHEEL] at ").append(this.xCoord).append(',').append(this.yCoord)
+        sb.append("[MITE][WHEEL] at ").append(this.xCoord).append(',').append(this.yCoord)
                 .append(',').append(this.zCoord)
                 .append(" axis=").append(this.axis())
                 .append(" meta=").append(this.getBlockMetadata())
@@ -856,7 +856,7 @@ public class KineticTileEntity extends TileEntity {
         if (selfBlock instanceof net.dsh.createmite.kinetics.block.BlockWrappedShaft) {
             if (!cm$wakeLogged) {
                 cm$wakeLogged = true;
-                System.out.println("[CreateMITE] 包裹传动杆 TE 正在 tick @ " + this.xCoord + "," + this.yCoord + ","
+                System.out.println("[MITE] 包裹传动杆 TE 正在 tick @ " + this.xCoord + "," + this.yCoord + ","
                         + this.zCoord + " 客户端=" + world.isRemote);
             }
             if (--this.furnaceWakeCooldown <= 0) {

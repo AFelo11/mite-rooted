@@ -109,7 +109,7 @@ public class BlockLargeWaterWheel extends BlockKineticBase {
             player.sendChatToPlayer(ChatMessageComponent.createFromText(
                     "§c大型水车要占 3x3 格：这里有方块挡着，没有生成隐形占位格。请清空轮盘平面后拆掉重放。"));
         }
-        System.out.println("[CreateMITE] 大型水车放不下 3x3：" + x + "," + y + "," + z
+        System.out.println("[MITE] 大型水车放不下 3x3：" + x + "," + y + "," + z
                 + " 轴向=" + (world.getBlockMetadata(x, y, z) & 3) + " → 只放主体，未生成占位格");
     }
 

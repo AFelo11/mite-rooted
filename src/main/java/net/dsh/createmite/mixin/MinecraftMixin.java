@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
- * 每客户端 tick 轮询一次「机械动力提示」按键（V）。
+ * 每客户端 tick 轮询一次「提示」按键（V）。
  *
  * 【为什么注入 runTick()V 而不是找个 Tick 事件】
  *   FishModLoader 3.4.2 的 net.xiaoyu233.fml.reload.event 里**没有**客户端 tick 事件
