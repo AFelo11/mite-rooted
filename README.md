@@ -115,17 +115,6 @@ powershell -ExecutionPolicy Bypass -File build.ps1 -McDir "X:\...\.minecraft" -J
 
 两者都能在「选项 → 控制」里改键。
 
-### 指令
-
-| 指令 | 功能 |
-| --- | --- |
-| /T | 导出结构 |
-| /cmf | 朝向信息 |
-| /cmhint | 提示开关 |
-| /se | 季节信息 |
-| /S | 昼夜时长 |
-| /Y | 天气 |
-
 ---
 
 # English
@@ -234,17 +223,6 @@ In vanilla MITE the essential-fats value is tracked but has **no effect at all**
 | I | Player panel (temperature and status) |
 
 Both are rebindable in Options → Controls.
-
-### Commands
-
-| Command | Function |
-| --- | --- |
-| /T | Export structure |
-| /cmf | Facing information |
-| /cmhint | Toggle hints |
-| /se | Season info |
-| /S | Day/night length |
-| /Y | Weather |
 
 ---
 
