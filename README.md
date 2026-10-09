@@ -110,7 +110,7 @@ powershell -ExecutionPolicy Bypass -File build.ps1 -McDir "X:\...\.minecraft" -J
 
 | 键 | 功能 |
 | --- | --- |
-| V | 机械动力提示（列出当前可做的事） |
+| V | 提示（列出当前可做的事） |
 | I | 玩家面板（体感温度等状态） |
 
 两者都能在「选项 → 控制」里改键。
@@ -119,7 +119,6 @@ powershell -ExecutionPolicy Bypass -File build.ps1 -McDir "X:\...\.minecraft" -J
 
 | 指令 | 功能 |
 | --- | --- |
-| /O | 维度传送 |
 | /T | 导出结构 |
 | /cmf | 朝向信息 |
 | /cmhint | 提示开关 |
@@ -231,7 +230,7 @@ In vanilla MITE the essential-fats value is tracked but has **no effect at all**
 
 | Key | Function |
 | --- | --- |
-| V | Create hints (what you can do right now) |
+| V | Hints (what you can do right now) |
 | I | Player panel (temperature and status) |
 
 Both are rebindable in Options → Controls.
@@ -240,7 +239,6 @@ Both are rebindable in Options → Controls.
 
 | Command | Function |
 | --- | --- |
-| /O | Dimension teleport |
 | /T | Export structure |
 | /cmf | Facing information |
 | /cmhint | Toggle hints |
