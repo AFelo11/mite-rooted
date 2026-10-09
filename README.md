@@ -1,12 +1,18 @@
-# MITE-扎根（MITE-Rooted）
+# MITE-扎根 · MITE-Rooted
 
 把《Create 机械动力》的动力与加工体系，**原生重制**到 **Minecraft 1.6.4 / MITE R196 / FishModLoader 3.4.2** 上。
 
-不是搬运、也不是移植现成的 jar：动力网络、应力、大熔炉、机壳与传动杆、四季、温度、食物体系等全部按 MITE 的代码风格重新实现。
+A native re-implementation of Create's kinetics and processing systems for **Minecraft 1.6.4 (MITE R196 + FishModLoader 3.4.2)**.
 
-**English**: A native re-implementation of Create's kinetics and processing systems for Minecraft 1.6.4 (MITE R196 + FishModLoader 3.4.2). This repository contains **source code only** — see 「编译」 below for build requirements.
+**中文** · [English](#english)
 
 ---
+
+# 中文
+
+## 这是什么
+
+不是搬运、也不是移植现成的 jar：动力网络、应力、机壳与传动杆、大熔炉、四季、温度、食物体系等全部按 MITE 的代码风格**重新实现**。本仓库**只有源码**，编译方法见下。
 
 ## 运行环境
 
@@ -19,17 +25,17 @@
 
 ## 编译（源码 → jar）
 
-本仓库只有源码。编译需要**自备**下面这些（它们受第三方版权保护，不随仓库分发）：
+编译需要**自备**下面这些（受第三方版权保护，不随本仓库分发）：
 
 - JDK 17
-- 一份 MITE R196 客户端：提供编译所需的映射版 jar（`.minecraft/.fml/remappedJars/1.6.4-MITE.jar-3.4.2.jar`）
+- 一份 MITE R196 客户端 —— 提供编译用的映射版 jar：`.minecraft/.fml/remappedJars/1.6.4-MITE.jar-3.4.2.jar`
 - FishModLoader 3.4.2、gson 2.10.1、LWJGL 2.9.4 —— MITE 客户端的 `libraries` 里都有
 
 ```powershell
-# 按自己的路径改 build.ps1 顶部两个参数（或命令行传入）
+# 按自己的路径改 build.ps1 顶部两个参数（也可以命令行传入）
 powershell -ExecutionPolicy Bypass -File build.ps1 -McDir "X:\...\.minecraft" -JdkBin "C:\java17\bin"
 
-# 产物：build\mite-rooted-0.1.0.jar  →  丢进 .minecraft\mods\
+# 产物：build\mite-rooted-0.1.0.jar  →  放进 .minecraft\mods\
 ```
 
 > ⚠️ 同一个 mod id 只能存在一个包：换包前**先删掉** `mods\` 里的旧包，否则游戏启动会失败。
@@ -37,37 +43,34 @@ powershell -ExecutionPolicy Bypass -File build.ps1 -McDir "X:\...\.minecraft" -J
 ## 内容一览
 
 ### 一、四季与昼夜
-- 春夏秋冬四季轮转：作物生长速度、积雪、结冰、昼夜时长都随季节变化
-- 季节长度、昼夜时长等参数写在 `config/createmite.properties`（首次启动自动生成）
+春夏秋冬四季轮转：作物生长速度、积雪、结冰、昼夜时长都随季节变化。季节长度与昼夜时长写在 `config/createmite.properties`（首次启动自动生成）。
 
 ### 二、天气
-- 5 种天气状态，随季节分布；下雪/下雨会影响环境温度与积雪
+5 种天气状态，随季节分布；下雨下雪会影响环境温度与积雪。
 
 ### 三、温度系统
-- **环境温度**：由生物群系、季节、时间、天气、高度等推算
-- **体感温度**：环境温度 ＋ 装备/手持物品 ＋ 食物 三套分别计算后叠加
-  （同号取更强的一项、异号相加；食物与物品的暖/凉效果按这个规则合成）
-- 体感过低会持续掉血；屏幕上有面板显示当前温度与来源
+- **环境温度**：由生物群系、季节、时间、天气、高度等推算。
+- **体感温度** = 环境温度 ＋ 装备/手持物品 ＋ 食物 三套分别计算后叠加（**同号取更强的一项、异号相加**）。
+- 体感过低会持续掉血；屏幕上有面板显示当前温度与来源。
 
 ### 四、热源与降温
-- 热源：**营火**（+12，半径 12）、**暖手石**（+8，可手持/烤热）
-- 降温链：**热水碗** ——5 分钟——> **温水碗** ——3 分钟——> **水碗**；**冰水碗** = 水碗 + 雪球
+- 热源：**营火**（+12，半径 12）、**暖手石**（+8，可反复烤热）。
+- 降温链：**热水碗** —5 分钟→ **温水碗** —3 分钟→ **水碗**；**冰水碗** = 水碗 + 雪球。
 
 ### 五、食物与饮品（套餐 A）
-- 碗类饮料：热水碗 / 温水碗 / 冰水碗 / 热牛奶碗；热奶桶（7 种金属材质各一份）
-- 喝完**返还容器**：碗还碗、奶桶还对应材质的空桶
-- 苹果派线：苹果派胚 ——熔炉——> 热苹果派 ——放 5 分钟——> 苹果派（**可回炉再热**）
-- 巧克力奶线：巧克力奶 ——熔炉——> 热巧克力奶
-- 每种食物/饮品都带自己的体感加成
+- 碗类饮料：热水碗 / 温水碗 / 冰水碗 / 热牛奶碗；热奶桶（7 种金属材质各一份）。
+- 喝完**返还容器**：碗还碗，奶桶还对应材质的空桶。
+- 苹果派线：苹果派胚 —熔炉→ 热苹果派 —放 5 分钟→ 苹果派（**可回炉再热**）。
+- 巧克力奶线：巧克力奶 —熔炉→ 热巧克力奶。
+- 每种食物/饮品都带自己的体感加成。
 
 ### 六、动力网络（应力）
-- 动力源「提供」应力、设备「占用」应力；同一张网里**占用 > 提供**就会过载
-  （过载行为在配置里可选，默认停机并提示）
-- 传动件：传动轴、齿轮 / 大齿轮、手摇曲柄、水车 / 大型水车、机壳系列（安山岩、黄铜、铜等）
+- 动力源「提供」应力、设备「占用」应力；同一张网里**占用 > 提供**就过载（默认停机并提示，模式可配置）。
+- 传动件：传动轴、齿轮 / 大齿轮、手摇曲柄、水车 / 大型水车、机壳系列（安山岩、黄铜、铜等）。
 
 ### 七、加工设备
-- **3×3×3 巨型熔炉**：多方块结构，成型后可烧炼并显示燃烧状态
-- **石磨 / 粉碎**：把矿石等粉碎成可加工的产物
+- **3×3×3 巨型熔炉**：多方块结构，成型后可烧炼并显示燃烧状态。
+- **石磨 / 粉碎**：把矿石等粉碎成可加工的产物。
 
 ### 八、3×3 营火（多方块）
 
@@ -79,17 +82,14 @@ powershell -ExecutionPolicy Bypass -File build.ps1 -McDir "X:\...\.minecraft" -J
 木板 木板 木板
 ```
 
-- 摆好即成型（熄灭态，无火光）
-- 用**打火石**右键点燃：燃烧 **3 分钟**；燃烧中**右键添加木材**（任意可燃、非金属），每次 **+1 分钟**，最多 9 次（合计 12 分钟）
-- 烧完自动熄灭；燃烧时提供火把级光照、冒火苗与烟、并作为热源（+12 / 半径 12）
-- **挖掉任何一格** ⇒ 整台 3×3 一起消失，且**不掉落任何东西**
-- 站在营火上不会受伤
+- 摆好即成型（熄灭态，无火光）。
+- 用**打火石**右键点燃，燃烧 **3 分钟**；燃烧中**右键加木材**（任意可燃、非金属），每次 **+1 分钟**，最多 9 次（合计 12 分钟）。
+- 烧完自动熄灭；燃烧时提供火把级光照、冒火苗与烟，并作为热源（+12 / 半径 12）。
+- **挖掉任何一格** ⇒ 整台 3×3 一起消失，且**不掉落任何东西**。
+- 站在营火上不会受伤。
 
 ### 九、其它
-- 工作台等级闸门：配方按工具等级解锁
-- 结构选择器：配合指令导出结构
-- 提示系统（默认按 **V**）：列出当前可做的事
-- 玩家面板（默认按 **I**）：显示体感温度等状态
+工作台等级闸门（配方按工具等级解锁）、结构选择器（配合指令导出结构）、提示系统、玩家面板。
 
 ## 操作
 
@@ -97,10 +97,10 @@ powershell -ExecutionPolicy Bypass -File build.ps1 -McDir "X:\...\.minecraft" -J
 
 | 键 | 功能 |
 | --- | --- |
-| V | 机械动力提示 |
-| I | 玩家面板 |
+| V | 机械动力提示（列出当前可做的事） |
+| I | 玩家面板（体感温度等状态） |
 
-（均可在「选项 → 控制」里改键）
+两者都能在「选项 → 控制」里改键。
 
 ### 指令
 
@@ -115,82 +115,199 @@ powershell -ExecutionPolicy Bypass -File build.ps1 -McDir "X:\...\.minecraft" -J
 | /S | 昼夜时长 |
 | /Y | 天气 |
 
-## 方块与物品清单
+---
 
-（下面两张表由源码里的名称表自动提取，中英对照）
+# English
 
-### 方块（31 项）
+## What is this
 
-| 名称 | English |
+Not a port of any existing jar and not a copy of Create's code: the kinetics network, stress, casings, shafts, the giant furnace, seasons, temperature and the food system are all **re-implemented from scratch** in MITE's own style. This repository contains **source code only** — see Build below.
+
+## Requirements
+
+| Item | Version |
 | --- | --- |
-| 安山合金块 | Block of Andesite Alloy |
-| 安山机壳 | Andesite Casing |
-| 黄铜块 | Block of Brass |
-| 黄铜机壳 | Brass Casing |
-| 篝火 | Campfire |
-| 燃烧的篝火 | Lit Campfire |
-| 营火 | Campfire |
-| 离合器 | Clutch |
-| 圆石熔炉核心 | Cobblestone Furnace Core |
-| 圆石熔炉传动杆 | Cobblestone Cased Shaft |
-| 齿轮 | Cogwheel |
-| 铜-传动杆 | Copper Shaft |
-| 粉碎轮 | Crushing Wheel |
-| 十字齿轮箱 | Gearbox |
-| 反转齿轮箱 | Gearshift |
-| 金-传动杆 | Gold Shaft |
-| 手摇曲柄 | Hand Crank |
-| 铁-传动杆 | Iron Shaft |
-| 大齿轮 | Large Cogwheel |
-| 大型水车 | Large Water Wheel |
-| 石磨 | Millstone |
-| 秘银-传动杆 | Mithril Shaft |
-| 地狱岩熔炉核心 | Netherrack Furnace Core |
-| 地狱岩熔炉传动杆 | Netherrack Cased Shaft |
-| 黑曜石熔炉核心 | Obsidian Furnace Core |
-| 黑曜石熔炉传动杆 | Obsidian Cased Shaft |
-| 锌矿石 | Zinc Ore |
-| 传动轴 | Shaft |
-| 银-传动杆 | Silver Shaft |
-| 水车 | Water Wheel |
-| 锌块 | Block of Zinc |
+| Minecraft | 1.6.4 |
+| MITE | R196 |
+| FishModLoader | 3.4.2 (hard dependency) |
+| Java | 17 |
 
-### 物品（27 项）
+## Build (source → jar)
 
-| 名称 | English |
+You must provide the following yourself — they are third-party and are **not** distributed here:
+
+- JDK 17
+- A MITE R196 client installation, which supplies the remapped compile jar: `.minecraft/.fml/remappedJars/1.6.4-MITE.jar-3.4.2.jar`
+- FishModLoader 3.4.2, gson 2.10.1, LWJGL 2.9.4 — all present in the MITE client's `libraries`
+
+```powershell
+# edit the two parameters at the top of build.ps1, or pass them on the command line
+powershell -ExecutionPolicy Bypass -File build.ps1 -McDir "X:\...\.minecraft" -JdkBin "C:\java17\bin"
+
+# output: build\mite-rooted-0.1.0.jar  ->  drop into .minecraft\mods\
+```
+
+> ⚠️ Only one jar per mod id: **delete the old jar** in `mods\` before installing a new one, or the game will fail to start.
+
+## Features
+
+### 1. Seasons and day/night length
+Four seasons cycle over time: crop growth speed, snow cover, ice formation and day/night length all follow the season. Season length and day/night timing live in `config/createmite.properties` (generated on first launch).
+
+### 2. Weather
+Five weather states distributed across the seasons; rain and snow affect ambient temperature and snow cover.
+
+### 3. Temperature system
+- **Ambient temperature** derived from biome, season, time of day, weather and altitude.
+- **Perceived temperature** = ambient + gear/held items + food, each computed separately and then combined (same sign: keep the stronger one; opposite signs: add them).
+- Freezing drains health over time; an on-screen panel shows the current temperature and its sources.
+
+### 4. Heat sources and cooling
+- Heat: **campfire** (+12, radius 12), **hand warmer** (+8, reheatable).
+- Cooling chain: **hot water bowl** —5 min→ **warm water bowl** —3 min→ **water bowl**; **ice water bowl** = water bowl + snowball.
+
+### 5. Food and drinks (set A)
+- Bowl drinks: hot / warm / ice water bowls, hot milk bowl; hot milk buckets (one per metal, 7 kinds).
+- **Containers are returned** when drunk: bowls come back as bowls, buckets as their own metal's empty bucket.
+- Apple pie line: raw apple pie —furnace→ hot apple pie —5 min→ apple pie (can be **re-baked**).
+- Chocolate milk line: chocolate milk —furnace→ hot chocolate milk.
+- Every food/drink carries its own temperature effect.
+
+### 6. Kinetics network (stress)
+- Generators **provide** stress, machines **consume** it; if consumption exceeds supply on the same network it overloads (default: stop and warn; the mode is configurable).
+- Components: shafts, cogwheels / large cogwheels, hand crank, water wheel / large water wheel, casing series (andesite, brass, copper, ...).
+
+### 7. Processing machines
+- **3×3×3 giant furnace**: a multiblock that smelts and shows its burning state.
+- **Millstone / crushing**: crushes ores into processable products.
+
+### 8. 3×3 campfire (multiblock)
+
+Build pattern (any **planks** ×6, any **wool** ×2, any **log** ×1; both orientations work):
+
+```
+planks planks planks
+wool   log    wool
+planks planks planks
+```
+
+- Assembles itself once complete (unlit, no flame).
+- Light it with **flint and steel**: burns for **3 minutes**; right-click with wood (any burnable, non-metal item) to add **+1 minute**, up to 9 times (12 minutes total).
+- Burns out on its own; while burning it emits torch-level light, flame and smoke particles, and acts as a heat source (+12 / radius 12).
+- Breaking **any one block** removes the whole 3×3 and drops **nothing**.
+- Standing on the campfire does no damage.
+
+### 9. Misc
+Workbench tier gating (recipes unlock by tool tier), structure selector (exports structures via command), hint system and player panel.
+
+## Controls
+
+### Keys
+
+| Key | Function |
 | --- | --- |
-| 安山合金 | Andesite Alloy |
-| 苹果派 | Apple Pie |
-| 苹果派胚 | Unbaked Apple Pie |
-| 苹果派胚（旧） | Unbaked Apple Pie (old) |
-| 黄铜粒 | Brass Nugget |
-| 巧克力奶 | Bowl of Chocolate Milk |
-| 粉碎艾德曼矿石 | Crushed Raw Adamantium |
-| 粉碎铜矿石 | Crushed Raw Copper |
-| 粉碎金矿石 | Crushed Raw Gold |
-| 粉碎铁矿石 | Crushed Raw Iron |
-| 粉碎秘银矿石 | Crushed Raw Mithril |
-| 粉碎粗锌 | Crushed Raw Zinc |
-| 粉碎银矿石 | Crushed Raw Silver |
-| 暖手石 | Hand Warmer |
-| 冷暖手石 | Cold Hand Warmer |
-| 热苹果派 | Hot Apple Pie |
-| 热巧克力奶 | Bowl of Hot Chocolate Milk |
-| 热牛奶碗 | Bowl of Hot Milk |
-| 热水碗 | Bowl of Hot Water |
-| 冰水碗 | Bowl of Ice Water |
-| 黄铜锭 | Brass Ingot |
-| 锌锭 | Zinc Ingot |
-| 粗锌 | Raw Zinc |
-| 结构选择器 | Structure Selector |
-| 温水碗 | Bowl of Warm Water |
-| 扳手 | Wrench |
-| 锌粒 | Zinc Nugget |
+| V | Create hints (what you can do right now) |
+| I | Player panel (temperature and status) |
 
-## 许可与署名
+Both are rebindable in Options → Controls.
 
-- **代码：MIT**，见 `LICENSE`
-- **贴图素材**：
+### Commands
+
+| Command | Function |
+| --- | --- |
+| /P | Switch game mode |
+| /O | Dimension teleport |
+| /T | Export structure |
+| /cmf | Facing information |
+| /cmhint | Toggle hints |
+| /se | Season info |
+| /S | Day/night length |
+| /Y | Weather |
+
+---
+
+## 方块与物品清单 / Blocks & Items
+
+### 方块 Blocks（31 项）
+
+| ID | 名称 | English |
+| --- | --- | --- |
+| 2335 | 安山合金块 | Block of Andesite Alloy |
+| 2325 | 安山机壳 | Andesite Casing |
+| 2334 | 黄铜块 | Block of Brass |
+| 2326 | 黄铜机壳 | Brass Casing |
+| 2301 | 篝火 | Campfire |
+| 2302 | 燃烧的篝火 | Lit Campfire |
+| 2303 | 营火 | Campfire |
+| 2316 | 离合器 | Clutch |
+| 2338 | 圆石熔炉核心 | Cobblestone Furnace Core |
+| 2341 | 圆石熔炉传动杆 | Cobblestone Cased Shaft |
+| 2311 | 齿轮 | Cogwheel |
+| 2342 | 铜-传动杆 | Copper Shaft |
+| 2321 | 粉碎轮 | Crushing Wheel |
+| 2315 | 十字齿轮箱 | Gearbox |
+| 2317 | 反转齿轮箱 | Gearshift |
+| 2344 | 金-传动杆 | Gold Shaft |
+| 2312 | 手摇曲柄 | Hand Crank |
+| 2345 | 铁-传动杆 | Iron Shaft |
+| 2314 | 大齿轮 | Large Cogwheel |
+| 2320 | 大型水车 | Large Water Wheel |
+| 2313 | 石磨 | Millstone |
+| 2346 | 秘银-传动杆 | Mithril Shaft |
+| 2337 | 地狱岩熔炉核心 | Netherrack Furnace Core |
+| 2340 | 地狱岩熔炉传动杆 | Netherrack Cased Shaft |
+| 2336 | 黑曜石熔炉核心 | Obsidian Furnace Core |
+| 2339 | 黑曜石熔炉传动杆 | Obsidian Cased Shaft |
+| 2300 | 锌矿石 | Zinc Ore |
+| 2310 | 传动轴 | Shaft |
+| 2343 | 银-传动杆 | Silver Shaft |
+| 2319 | 水车 | Water Wheel |
+| 2333 | 锌块 | Block of Zinc |
+
+### 物品 Items（27 项）
+
+| ID | 名称 | English |
+| --- | --- | --- |
+| 2361 | 安山合金 | Andesite Alloy |
+| 2385 | 苹果派 | Apple Pie |
+| 2384 | 苹果派胚 | Unbaked Apple Pie |
+| 2640 | 苹果派胚（旧） | Unbaked Apple Pie (old) |
+| 2363 | 黄铜粒 | Brass Nugget |
+| 2387 | 巧克力奶 | Bowl of Chocolate Milk |
+| 2369 | 粉碎艾德曼矿石 | Crushed Raw Adamantium |
+| 2366 | 粉碎铜矿石 | Crushed Raw Copper |
+| 2365 | 粉碎金矿石 | Crushed Raw Gold |
+| 2364 | 粉碎铁矿石 | Crushed Raw Iron |
+| 2368 | 粉碎秘银矿石 | Crushed Raw Mithril |
+| 2359 | 粉碎粗锌 | Crushed Raw Zinc |
+| 2367 | 粉碎银矿石 | Crushed Raw Silver |
+| 2371 | 暖手石 | Hand Warmer |
+| 2372 | 冷暖手石 | Cold Hand Warmer |
+| 2386 | 热苹果派 | Hot Apple Pie |
+| 2388 | 热巧克力奶 | Bowl of Hot Chocolate Milk |
+| 2376 | 热牛奶碗 | Bowl of Hot Milk |
+| 2373 | 热水碗 | Bowl of Hot Water |
+| 2375 | 冰水碗 | Bowl of Ice Water |
+| 2358 | 黄铜锭 | Brass Ingot |
+| 2357 | 锌锭 | Zinc Ingot |
+| 2356 | 粗锌 | Raw Zinc |
+| 2370 | 结构选择器 | Structure Selector |
+| 2374 | 温水碗 | Bowl of Warm Water |
+| 2360 | 扳手 | Wrench |
+| 2362 | 锌粒 | Zinc Nugget |
+
+---
+
+## 许可与署名 / License & Credits
+
+- **代码 / Code: GNU GPL-3.0**，全文见 `LICENSE`。
+  你可以自由使用、修改、再分发，**但衍生作品必须同样以 GPL-3.0 开源**，并保留版权声明。
+  Licensed under the **GNU General Public License v3.0** — you may use, modify and redistribute it, but **derivative works must also be released under GPL-3.0** and keep the copyright notice.
+- 版权 / Copyright (C) 2026 **MITE-扎根 (MITE-Rooted)**
+- **贴图素材 / Textures**：
   - 部分贴图来自 **Create**（MIT License，作者 simibubi 及贡献者）—— 详见 `ATTRIBUTION.md`
-  - 营火贴图取自 **Minecraft 1.20.1** 客户端资源，版权归 Mojang，仅作学习交流用途
-- 本项目与 Create 官方团队、MITE 制作组均无隶属关系
+    Some textures come from **Create** (MIT License, by simibubi and contributors) — see `ATTRIBUTION.md`
+  - 营火贴图取自 **Minecraft 1.20.1** 客户端资源，版权归 Mojang，仅用于学习交流
+    Campfire textures are taken from the **Minecraft 1.20.1** client assets; copyright Mojang, used for study and non-commercial exchange only
+- 本项目与 Create 官方团队、MITE 制作组均无隶属关系。
+  This project is not affiliated with the Create team or the MITE authors.
